@@ -1,0 +1,110 @@
+@font-face {
+  font-family: "geomanistregular";
+  src: url("../../Fonts/Geomanist/geomanist-regular-webfont.eot");
+  src: url("../../Fonts/Geomanist/geomanist-regular-webfont.eot?#iefix")
+      format("embedded-opentype"),
+    url("../../Fonts/Geomanist/geomanist-regular-webfont.woff2") format("woff2"),
+    url("../../Fonts/Geomanist/geomanist-regular-webfont.woff") format("woff"),
+    url("../../Fonts/Geomanist/geomanist-regular-webfont.ttf")
+      format("truetype"),
+    url("../../Fonts/Geomanist/geomanist-regular-webfont.svg#geomanistregular")
+      format("svg");
+  font-weight: normal;
+  font-style: normal;
+}
+@font-face {
+  font-family: "geomanistitalic";
+  src: url("../../Fonts/Geomanist/geomanist-regular-italic-webfont.eot");
+  src: url("../../Fonts/Geomanist/geomanist-regular-italic-webfont.eot?#iefix")
+      format("embedded-opentype"),
+    url("../../Fonts/Geomanist/geomanist-regular-italic-webfont.woff2")
+      format("woff2"),
+    url("../../Fonts/Geomanist/geomanist-regular-italic-webfont.woff")
+      format("woff"),
+    url("../../Fonts/Geomanist/geomanist-regular-italic-webfont.ttf")
+      format("truetype"),
+    url("../../Fonts/Geomanist/geomanist-regular-italic-webfont.svg#geomanistitalic")
+      format("svg");
+  font-weight: normal;
+  font-style: normal;
+}
+
+:root {
+  --main-color: #0e0918;
+  --navbar-color: #000001;
+  --navbar-li-hover: #1c1c1c;
+  --text-color-primay: #9384aa;
+  --color-promary-hover: #e4e4e4;
+  --text-opacity: 1;
+  --text-white: rgb(255 255 255 / var(--tw-text-opacity, 1));
+  --text-color-secondry: #f77726;
+  --button-orange-gradient: radial-gradient(
+      5rem 80% at var(--gradient-glow-x) var(--gradient-glow-y),
+      #fff,
+      #ff9b26 90%
+    ),
+    radial-gradient(5rem 80% at 100% 50%, #fff, #ff9b26 90%);
+
+  --button-main-gradient: radial-gradient(
+    5rem 60% at 100% 50%,
+    #ffffff80,
+    #292931 90%
+  );
+
+  --section-backlayer-border: 1px solid hsla(0, 0%, 100%, 0.1);
+  --section-backlayer-boxshadow: inset 0 0.450581px #ffffff4d,
+    0 0 36.0465px #ffffff0f;
+  --section-backlayer-gradient: linear-gradient(116.91deg, #e3a5724f, #5780e661)
+    no-repeat;
+  --section-background-gradient: linear-gradient(180deg, #211a2e 10%, #000)
+    no-repeat;
+  --section-button-hover: #241d30;
+  --section-notactive-gradient: linear-gradient(
+    180deg,
+    rgba(37, 30, 50, 1) 0%,
+    rgba(23, 18, 31, 1) 100%
+  );
+  --section-active-gradient: linear-gradient(0deg, #6b21ef26, #6b21ef26),
+    radial-gradient(79.29% 94.78% at 59.78% 129.81%, #7f5eb6 0, #26214900),
+    linear-gradient(180deg, #3c3149, #26214900);
+}
+
+* {
+  padding: 0%;
+  margin: 0%;
+}
+
+body {
+  width: 100vw;
+  height: 100vh;
+  background-color: var(--main-color);
+  color: var(--text-color-primay);
+  font-family: "geomanistregular";
+}
+
+h1 {
+  color: var(--text-color-primay);
+}
+h2 {
+  color: var(--text-white);
+}
+
+/*
+.tab{
+--color-linear-top: #251e32;
+    --color-linear-bottom: #17121f;
+    --color-radial-center: transparent;
+    align-items: flex-start;
+    background-image: radial-gradient(circle closest-corner at 55% 185%, var(--color-radial-center), rgba(38, 33, 73, 0)), linear-gradient(180deg, var(--color-linear-top), var(--color-linear-bottom));
+    background-repeat: no-repeat;
+    border: 1px solid hsla(0, 0%, 100%, .1);
+    border-radius: 8px;
+    box-shadow: inset 0 0 #fff3, 0 0 8px #000;
+    justify-content: flex-start;
+    padding: 24px;
+    text-decoration: none;
+    transition-duration: .2s, .3s, .3s, .3s, .4s;
+    transition-property: transform, border-color, --color-linear-top, --color-linear-bottom, --color-radial-center;
+    transition-timing-function: ease;
+}
+*/
