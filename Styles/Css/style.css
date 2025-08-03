@@ -1,56 +1,100 @@
 @font-face {
-  font-family: "geomanistregular";
-  src: url("../../Fonts/Geomanist/geomanist-regular-webfont.eot");
-  src: url("../../Fonts/Geomanist/geomanist-regular-webfont.eot?#iefix")
-      format("embedded-opentype"),
-    url("../../Fonts/Geomanist/geomanist-regular-webfont.woff2") format("woff2"),
-    url("../../Fonts/Geomanist/geomanist-regular-webfont.woff") format("woff"),
-    url("../../Fonts/Geomanist/geomanist-regular-webfont.ttf")
-      format("truetype"),
-    url("../../Fonts/Geomanist/geomanist-regular-webfont.svg#geomanistregular")
-      format("svg");
-  font-weight: normal;
+  font-family: "Geomanist";
+  src: url("../../Fonts/Geomanist/Geomanist-Ultra.otf") format("opentype");
+  font-weight: 100;
   font-style: normal;
 }
 @font-face {
-  font-family: "geomanistitalic";
-  src: url("../../Fonts/Geomanist/geomanist-regular-italic-webfont.eot");
-  src: url("../../Fonts/Geomanist/geomanist-regular-italic-webfont.eot?#iefix")
-      format("embedded-opentype"),
-    url("../../Fonts/Geomanist/geomanist-regular-italic-webfont.woff2")
-      format("woff2"),
-    url("../../Fonts/Geomanist/geomanist-regular-italic-webfont.woff")
-      format("woff"),
-    url("../../Fonts/Geomanist/geomanist-regular-italic-webfont.ttf")
-      format("truetype"),
-    url("../../Fonts/Geomanist/geomanist-regular-italic-webfont.svg#geomanistitalic")
-      format("svg");
-  font-weight: normal;
+  font-family: "Geomanist";
+  src: url("../../Fonts/Geomanist/Geomanist-Thin.otf") format("opentype");
+  font-weight: 100;
   font-style: normal;
+}
+@font-face {
+  font-family: "Geomanist";
+  src: url("../../Fonts/Geomanist/Geomanist-ExtraLight.otf") format("opentype");
+  font-weight: 200;
+  font-style: normal;
+}
+@font-face {
+  font-family: "Geomanist";
+  src: url("../../Fonts/Geomanist/Geomanist-Light.otf") format("opentype");
+  font-weight: 300;
+  font-style: normal;
+}
+@font-face {
+  font-family: "Geomanist";
+  src: url("../../Fonts/Geomanist/Geomanist-Book.otf") format("opentype");
+  font-weight: 350;
+  font-style: normal;
+}
+@font-face {
+  font-family: "Geomanist";
+  src: url("../../Fonts/Geomanist/Geomanist-Regular.otf") format("opentype");
+  font-weight: 400;
+  font-style: normal;
+}
+@font-face {
+  font-family: "Geomanist";
+  src: url("../../Fonts/Geomanist/Geomanist-Medium.otf") format("opentype");
+  font-weight: 500;
+  font-style: normal;
+}
+@font-face {
+  font-family: "Geomanist";
+  src: url("../../Fonts/Geomanist/Geomanist-Bold.otf") format("opentype");
+  font-weight: 700;
+  font-style: normal;
+}
+@font-face {
+  font-family: "Geomanist";
+  src: url("../../Fonts/Geomanist/Geomanist-Black.otf") format("opentype");
+  font-weight: 900;
+  font-style: normal;
+}
+* {
+  padding: 0%;
+  margin: 0%;
+  box-sizing: border-box;
+}
+body {
+  background-color: var(--main-color);
+  color: var(--text-color-primary);
+  font-family: "Geomanist", sans-serif;
+}
+::-webkit-scrollbar {
+  width: 10px;
+}
+::-webkit-scrollbar-track {
+  background: #eeeeee;
+}
+::-webkit-scrollbar-thumb {
+  background: #555555;
 }
 
 :root {
   --main-color: #0e0918;
   --navbar-color: #000001;
   --navbar-li-hover: #1c1c1c;
-  --text-color-primay: #9384aa;
-  --color-promary-hover: #e4e4e4;
+  --border-color: rgb(31 25 42);
+  --text-color-primary: #b1a9be;
+  --color-primary-hover: #e4e4e4;
   --text-opacity: 1;
-  --text-white: rgb(255 255 255 / var(--tw-text-opacity, 1));
+  --text-white: rgb(255 255 255 / var(--text-opacity, 1));
   --text-color-secondry: #f77726;
-  --button-orange-gradient: radial-gradient(
-      5rem 80% at var(--gradient-glow-x) var(--gradient-glow-y),
-      #fff,
-      #ff9b26 90%
-    ),
-    radial-gradient(5rem 80% at 100% 50%, #fff, #ff9b26 90%);
+  --button-orange-gradient: linear-gradient(
+    180deg,
+    rgba(253, 29, 29, 1) 50%,
+    rgba(252, 176, 69, 1) 100%
+  );
 
   --button-main-gradient: radial-gradient(
     5rem 60% at 100% 50%,
     #ffffff80,
     #292931 90%
   );
-
+  --header-text-gradient: linear-gradient(180deg, #ffffff1a, #0003 58%),
+    linear-gradient(140deg, #fff, #7c65a1);
   --section-backlayer-border: 1px solid hsla(0, 0%, 100%, 0.1);
   --section-backlayer-boxshadow: inset 0 0.450581px #ffffff4d,
     0 0 36.0465px #ffffff0f;
@@ -68,27 +112,200 @@
     radial-gradient(79.29% 94.78% at 59.78% 129.81%, #7f5eb6 0, #26214900),
     linear-gradient(180deg, #3c3149, #26214900);
 }
+@media (min-width: 1200px) {
+}
+@media screen and (min-width: 992px) and (max-width: 1200px) {
+}
+@media screen and (min-width: 768px) and (max-width: 992px) {
+}
+@media (max-width: 768px) {
+}
 
-* {
-  padding: 0%;
+#nav-container {
+  width: 100%;
+  height: auto;
+  display: flex;
+  justify-content: center;
+  padding: 4px;
+}
+nav {
+  width: 100%;
+  height: 70px;
+  display: flex;
+  align-items: center;
+  background-color: var(--navbar-color);
+  color: var(--text-color-primary);
+  border: 1px solid rgb(31 25 42);
+  border-radius: 8px;
+  padding: 0px 10px;
+}
+.image-container {
+  position: relative;
+  display: inline-block;
+  padding: 0;
   margin: 0%;
+  display: flex;
+  justify-content: center;
+  align-items: end;
+}
+.nav-logo {
+  width: auto;
+  height: 24px;
+  position: absolute;
+  opacity: 0;
+  cursor: pointer;
+}
+.nav-logo.active {
+  opacity: 1;
+}
+.nav-logo:first-child {
+  position: relative;
 }
 
-body {
-  width: 100vw;
-  height: 100vh;
-  background-color: var(--main-color);
-  color: var(--text-color-primay);
-  font-family: "geomanistregular";
+.nav-list {
+  display: flex;
+  margin: 0%;
+  padding: 0px 15px;
+  height: 100%;
 }
-
-h1 {
-  color: var(--text-color-primay);
+.nav-list .nav-item {
+  height: 100%;
+  list-style: none;
+  margin-right: 35px;
+  cursor: pointer;
+  transition: color 0.3s ease;
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
-h2 {
+.nav-list .nav-item i {
+  font-size: 12px;
+}
+.nav-list .nav-item:hover {
   color: var(--text-white);
 }
 
+.drop-down {
+  width: 200px;
+  position: absolute;
+  top: 68px;
+  left: -20px;
+  opacity: 0;
+  padding: 4px;
+  cursor: default;
+  visibility: hidden;
+  border-radius: 8px;
+  border: 1px solid rgb(31 25 42);
+  background-color: var(--navbar-color);
+  transform: translateY(0.5rem);
+  transition: all 0.4s cubic-bezier(0.16, 1, 0.5, 1);
+  z-index: 1000;
+}
+.drop-down li {
+  font-weight: 300;
+  list-style: none;
+  color: var(--text-white);
+  padding: 10px 8px 10px 15px;
+  transition: all 0.3s ease;
+  border-radius: 8px;
+}
+.drop-down li:hover {
+  cursor: pointer;
+  background-color: rgb(51, 51, 51);
+}
+.drop-down.dropsmall {
+  width: 160px;
+}
+.show {
+  transform: translateY(0);
+  display: block;
+  opacity: 0.92;
+  visibility: visible;
+}
+
+.nav-links {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  gap: 30px;
+}
+.nav-links .github {
+  --gradient-opacity: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-decoration: none;
+  color: var(--text-white);
+  font-weight: 300;
+  padding: 4px 6px;
+  border-radius: 8px;
+  border: 1px solid var(--text-color-primary);
+  gap: 8px;
+  background: linear-gradient(to bottom, #26214900 0, #0000006b),
+    linear-gradient(
+      to bottom,
+      rgba(221, 221, 221, var(--gradient-opacity)) 0,
+      rgba(221, 221, 221, var(--gradient-opacity))
+    );
+  transition: 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+}
+.nav-links .github:hover {
+  --gradient-opacity: 0.16;
+}
+.nav-links .github i.fa-star {
+  font-size: 10px;
+}
+
+.nav-links .sign-in {
+  cursor: pointer;
+  transition: color 0.3s ease;
+}
+.nav-links .sign-in:hover {
+  color: var(--text-white);
+}
+
+.nav-links .started {
+  text-decoration: none;
+  color: var(--text-white);
+  padding: 4px 16px;
+  border-radius: 8px;
+  position: relative;
+  background: linear-gradient(
+    180deg,
+    rgba(253, 29, 29, 1) 50%,
+    rgba(252, 176, 69, 1) 100%
+  );
+  transition: all 0.4s ease-out;
+  z-index: 1;
+}
+
+.nav-links .started::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: linear-gradient(
+    0deg,
+    rgba(253, 29, 29, 1) 50%,
+    rgba(252, 176, 69, 1) 100%
+  );
+  border-radius: inherit;
+  opacity: 0;
+  transition: opacity 0.4s ease-out;
+  z-index: -1;
+}
+
+.nav-links .started:hover::before {
+  opacity: 1;
+}
+
+h1 {
+  color: var(--header-text-gradient);
+  margin: 100px 150px;
+}
 /*
 .tab{
 --color-linear-top: #251e32;
