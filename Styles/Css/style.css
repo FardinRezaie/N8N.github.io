@@ -61,6 +61,7 @@ body {
   background-color: var(--main-color);
   color: var(--text-color-primary);
   font-family: "Geomanist", sans-serif;
+  padding-top: 78px; /* nav height + container padding */
 }
 ::-webkit-scrollbar {
   width: 10px;
@@ -112,14 +113,6 @@ body {
     radial-gradient(79.29% 94.78% at 59.78% 129.81%, #7f5eb6 0, #26214900),
     linear-gradient(180deg, #3c3149, #26214900);
 }
-@media (min-width: 1200px) {
-}
-@media screen and (min-width: 992px) and (max-width: 1200px) {
-}
-@media screen and (min-width: 768px) and (max-width: 992px) {
-}
-@media (max-width: 768px) {
-}
 
 #nav-container {
   width: 100%;
@@ -127,6 +120,11 @@ body {
   display: flex;
   justify-content: center;
   padding: 4px;
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 1000;
+  transition: transform 0.3s ease;
 }
 nav {
   width: 100%;
@@ -141,15 +139,16 @@ nav {
 }
 .image-container {
   position: relative;
+  height: 100%;
   display: inline-block;
   padding: 0;
   margin: 0%;
   display: flex;
   justify-content: center;
-  align-items: end;
+  align-items: center;
 }
 .nav-logo {
-  width: auto;
+  width: 100;
   height: 24px;
   position: absolute;
   opacity: 0;
@@ -171,13 +170,15 @@ nav {
 .nav-list .nav-item {
   height: 100%;
   list-style: none;
-  margin-right: 35px;
   cursor: pointer;
   transition: color 0.3s ease;
   position: relative;
   display: flex;
   align-items: center;
   justify-content: center;
+}
+.nav-list .nav-item:not(:first-child) {
+  margin-left: 35px;
 }
 .nav-list .nav-item i {
   font-size: 12px;
@@ -186,7 +187,7 @@ nav {
   color: var(--text-white);
 }
 
-.drop-down {
+.drop-list {
   width: 200px;
   position: absolute;
   top: 68px;
@@ -202,7 +203,7 @@ nav {
   transition: all 0.4s cubic-bezier(0.16, 1, 0.5, 1);
   z-index: 1000;
 }
-.drop-down li {
+.drop-list li {
   font-weight: 300;
   list-style: none;
   color: var(--text-white);
@@ -210,11 +211,11 @@ nav {
   transition: all 0.3s ease;
   border-radius: 8px;
 }
-.drop-down li:hover {
+.drop-list li:hover {
   cursor: pointer;
   background-color: rgb(51, 51, 51);
 }
-.drop-down.dropsmall {
+.drop-list.dropsmall {
   width: 160px;
 }
 .show {
@@ -228,7 +229,7 @@ nav {
   display: flex;
   justify-content: flex-end;
   align-items: center;
-  gap: 30px;
+  gap: 20px;
 }
 .nav-links .github {
   --gradient-opacity: 0;
@@ -253,6 +254,7 @@ nav {
 .nav-links .github:hover {
   --gradient-opacity: 0.16;
 }
+
 .nav-links .github i.fa-star {
   font-size: 10px;
 }
@@ -302,10 +304,6 @@ nav {
   opacity: 1;
 }
 
-h1 {
-  color: var(--header-text-gradient);
-  margin: 100px 150px;
-}
 /*
 .tab{
 --color-linear-top: #251e32;
@@ -325,3 +323,179 @@ h1 {
     transition-timing-function: ease;
 }
 */
+
+.nav-links {
+  gap: 20px;
+}
+.nav-links .sign-in {
+  font-size: 16px;
+}
+.nav-links .github span:not(:last-child) {
+  display: none;
+}
+.nav-links .github .fa-github {
+  font-size: 18px;
+}
+.nav-links .github span:last-child {
+  font-size: 14px;
+}
+.nav-links .started {
+  /* font-size: 14px; */
+  padding: 4px 14px;
+}
+.menu-icon {
+  width: 55px;
+  height: 40px;
+  border-radius: 40%;
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: var(--color-primary-hover);
+  transition: box-shadow 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94),
+    color 0.2s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  cursor: pointer;
+}
+.menu-icon.active {
+  font-size: 18px;
+  box-shadow: 0 5px 40px -10px #ff9b26, inset -15px 13px 20px #4c5dff,
+    inset 20px -55px 20px #ee4f27;
+}
+.menu-list {
+  position: fixed;
+  width: 99%;
+  top: 78px; /* nav height + container padding */
+  left: 0;
+  right: 0;
+  margin: 0 auto;
+  display: none;
+  flex-direction: column;
+  background-color: var(--navbar-color);
+  color: var(--text-color-primary);
+  border: 1px solid rgb(31 25 42);
+  padding: 10px 30px;
+  max-height: calc(100vh - 78px); /* viewport height minus nav height */
+  overflow-y: auto;
+  /* Show scrollbar for menu content */
+  scrollbar-width: thin;
+  scrollbar-color: var(--text-color-primary) var(--navbar-color);
+}
+.menuActive {
+  display: flex;
+}
+.menu-item {
+  list-style: none;
+  font-size: 20px;
+  font-weight: 400;
+  color: var(--color-primary-hover);
+  padding: 16px 0;
+  cursor: pointer;
+}
+
+.menu-item span {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.menu-item span i {
+  font-size: 16px;
+  transition: rotate 0.2s ease-in-out;
+}
+.menu-item span i.chevronActive {
+  rotate: 180deg;
+  transition: rotate 0.3s ease-in-out;
+}
+
+.menu-item ul.menu-accordian-list {
+  padding: 0 20px;
+  max-height: 0;
+  opacity: 0;
+  overflow: hidden;
+  visibility: hidden;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+.menu-item ul.menu-accordian-list li {
+  list-style: none;
+  font-size: 16px;
+  color: var(--color-primary-hover);
+  margin: 30px 0px;
+  padding: 0%;
+  opacity: 0;
+  transform: translateY(-10px);
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* Show items when panel is open */
+.menu-item ul.menu-accordian-list[style*="max-height"] {
+  opacity: 1;
+  visibility: visible;
+}
+
+.menu-item ul.menu-accordian-list[style*="max-height"] li {
+  opacity: 1;
+  transform: translateY(0);
+}
+@media (min-width: 1200px) {
+}
+@media screen and (min-width: 992px) and (max-width: 1199.98px) {
+  .nav-list {
+    padding-right: 0;
+  }
+  .nav-list .nav-item {
+    font-size: 14px;
+    margin-left: 28px !important;
+  }
+  .nav-links {
+    gap: 15px;
+  }
+  .nav-links .sign-in {
+    font-size: 14px;
+  }
+  .nav-links .github span:not(:last-child) {
+    display: none;
+  }
+  .nav-links .github .fa-github {
+    font-size: 18px;
+  }
+  .nav-links .github span:last-child {
+    font-size: 14px;
+  }
+  .nav-links .started {
+    font-size: 14px;
+    padding: 4px 12px;
+  }
+}
+@media screen and (min-width: 768px) and (max-width: 991.98px) {
+  nav {
+    display: flex;
+    justify-content: space-between;
+  }
+  .image-container {
+    justify-content: flex-start;
+    margin-left: 20px;
+  }
+  /* Hide-on-scroll behavior */
+  #nav-container.nav-hidden {
+    transform: translateY(-100%);
+  }
+}
+@media (max-width: 767.98px) {
+  nav {
+    display: flex;
+    justify-content: space-between;
+  }
+  .image-container {
+    justify-content: flex-start;
+    margin-left: 20px;
+  }
+  .nav-links .github {
+    display: none;
+  }
+  /* Hide-on-scroll behavior */
+  #nav-container.nav-hidden {
+    transform: translateY(-100%);
+  }
+}
+.hidden {
+  display: none;
+}
