@@ -1,3 +1,4 @@
+/* -------------------- Nav part -------------------- */
 const container = document.querySelector(".image-container");
 const images = container.querySelectorAll(".nav-logo");
 
@@ -149,3 +150,5 @@ window.addEventListener("scroll", function () {
 
   lastScrollTop = currentScroll <= 0 ? 0 : currentScroll; // Prevent negative scrolling
 });
+
+/* -------------------- Header part -------------------- */

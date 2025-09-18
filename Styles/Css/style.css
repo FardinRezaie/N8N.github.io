@@ -114,6 +114,8 @@ body {
     linear-gradient(180deg, #3c3149, #26214900);
 }
 
+/* -------------------- Nav part Start -------------------- */
+
 #nav-container {
   width: 100%;
   height: auto;
@@ -273,11 +275,8 @@ nav {
   padding: 4px 16px;
   border-radius: 8px;
   position: relative;
-  background: linear-gradient(
-    180deg,
-    rgba(253, 29, 29, 1) 50%,
-    rgba(252, 176, 69, 1) 100%
-  );
+  background: linear-gradient(225deg, #ff0c00, #fd8925);
+  overflow: hidden;
   transition: all 0.4s ease-out;
   z-index: 1;
 }
@@ -289,19 +288,16 @@ nav {
   left: 0;
   right: 0;
   bottom: 0;
-  background: linear-gradient(
-    0deg,
-    rgba(253, 29, 29, 1) 50%,
-    rgba(252, 176, 69, 1) 100%
-  );
+  background: linear-gradient(225deg, #ff0c00, #fd8925);
   border-radius: inherit;
-  opacity: 0;
-  transition: opacity 0.4s ease-out;
+  opacity: 1;
+  transition: transform 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+  transform: translateY(100%);
   z-index: -1;
 }
 
 .nav-links .started:hover::before {
-  opacity: 1;
+  transform: translateY(-80%);
 }
 
 /*
@@ -330,9 +326,9 @@ nav {
 .nav-links .sign-in {
   font-size: 16px;
 }
-.nav-links .github span:not(:last-child) {
+/* .nav-links .github span:not(:last-child) {
   display: none;
-}
+} */
 .nav-links .github .fa-github {
   font-size: 18px;
 }
@@ -364,7 +360,7 @@ nav {
 .menu-list {
   position: fixed;
   width: 99%;
-  top: 78px; /* nav height + container padding */
+  top: 74px;
   left: 0;
   right: 0;
   margin: 0 auto;
@@ -374,11 +370,12 @@ nav {
   color: var(--text-color-primary);
   border: 1px solid rgb(31 25 42);
   padding: 10px 30px;
-  max-height: calc(100vh - 78px); /* viewport height minus nav height */
+  max-height: 100vh;
   overflow-y: auto;
   /* Show scrollbar for menu content */
   scrollbar-width: thin;
   scrollbar-color: var(--text-color-primary) var(--navbar-color);
+  z-index: 999 !important;
 }
 .menuActive {
   display: flex;
@@ -425,7 +422,6 @@ nav {
   transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
-/* Show items when panel is open */
 .menu-item ul.menu-accordian-list[style*="max-height"] {
   opacity: 1;
   visibility: visible;
@@ -435,7 +431,167 @@ nav {
   opacity: 1;
   transform: translateY(0);
 }
+
+/* -------------------- Nav part end -------------------- */
+
+.container {
+  position: relative;
+  display: flex;
+  justify-content: center;
+  /* border: 1px solid var(--color-primary-hover); */
+}
+/* -------------------- Header part start -------------------- */
+.header {
+  width: 100%;
+  height: 470px;
+  /* border: 1px solid var(--text-color-secondry); */
+  display: flex;
+  align-items: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  position: relative;
+  z-index: 2;
+}
+#video-holder {
+  width: 100%;
+  height: auto;
+  position: relative;
+  display: flex;
+  justify-content: center;
+  justify-self: center;
+  z-index: -2;
+}
+.background-video {
+  position: absolute;
+  max-width: 100%;
+  height: 470px;
+  object-fit: cover;
+  z-index: -2;
+  opacity: 0.8;
+}
+.header-img {
+  position: absolute;
+  width: 700px;
+  height: auto;
+  left: 30%;
+  bottom: 0%;
+  /* border: 1px solid var(--text-color-secondry); */
+  z-index: 0;
+}
+.overlay {
+  position: absolute;
+  width: 100vw;
+  height: 100%;
+  background-image: radial-gradient(
+    circle at center,
+    rgba(0, 0, 0, 0.9) 100%,
+    var(--main-color) 100%
+  );
+  opacity: 0.91;
+  z-index: -1;
+}
+.text-holder {
+  width: 560px;
+  /* border: 1px solid var(--text-color-secondry); */
+  margin-left: 120px;
+  z-index: 0;
+}
+.text-holder h1 {
+  font-size: 38px;
+  font-weight: 500;
+  cursor: text;
+}
+#text-gradient {
+  background: linear-gradient(to left, #ff512f 0%, #f09819 51%, #ff512f 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  -webkit-text-stroke: 1px rgba(255, 255, 255, 0.1);
+}
+
+#button-holder button {
+  outline: none;
+  border: 0px solid white;
+  overflow: hidden;
+}
+#button-holder button:first-child {
+  text-decoration: none;
+  color: var(--text-white);
+  margin-right: 10px;
+  padding: 6px 16px;
+  border: 1px solid hsla(0, 0%, 100%, 0.4);
+  border-radius: 8px;
+  position: relative;
+  background: linear-gradient(225deg, #ff0c00, #fd8925);
+  overflow: hidden;
+}
+
+#button-holder button:first-child::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: linear-gradient(225deg, #ff0c00, #fd8925);
+  border-radius: inherit;
+  opacity: 1;
+  transition: transform 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+  transform: translateY(100%);
+}
+
+#button-holder button:first-child:hover::before {
+  transform: translateY(-60%);
+}
+
+#button-holder button:last-child {
+  text-decoration: none;
+  color: var(--text-white);
+  padding: 6px 16px;
+  border: 1px solid hsla(0, 0%, 100%, 0.4);
+  border-radius: 8px;
+  position: relative;
+  background: linear-gradient(
+    180deg,
+    rgba(14, 9, 24, 1) 100%,
+    rgba(37, 54, 71, 1) 100%,
+    rgba(54, 89, 108, 1) 100%
+  );
+  overflow: hidden; /* Add this to contain the sliding gradient */
+}
+#button-holder button:last-child::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: linear-gradient(
+    0deg,
+    rgba(14, 9, 24, 1) 0%,
+    rgba(37, 54, 71, 1) 50%,
+    rgba(14, 9, 24, 1) 100%
+  );
+  border-radius: inherit;
+  opacity: 1;
+  transition: transform 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+  transform: translateY(80%);
+}
+
+#button-holder button:last-child:hover::before {
+  transform: translateY(-60%);
+}
+
+/* -------------------- Header part end -------------------- */
+
+/* -------------------- Media Queries -------------------- */
 @media (min-width: 1200px) {
+  .container {
+    min-width: 1200px;
+  }
+
+  .overlay {
+    min-width: 100%;
+  }
 }
 @media screen and (min-width: 992px) and (max-width: 1199.98px) {
   .nav-list {
@@ -464,11 +620,16 @@ nav {
     font-size: 14px;
     padding: 4px 12px;
   }
+  .text-holder {
+    margin-left: 0;
+  }
 }
 @media screen and (min-width: 768px) and (max-width: 991.98px) {
   nav {
     display: flex;
     justify-content: space-between;
+    border-bottom-left-radius: 0% !important;
+    border-bottom-right-radius: 0% !important;
   }
   .image-container {
     justify-content: flex-start;
@@ -478,11 +639,22 @@ nav {
   #nav-container.nav-hidden {
     transform: translateY(-100%);
   }
+  .container {
+    max-width: 900px;
+  }
+  .nav-links .github span:not(:last-child) {
+    display: none;
+  }
 }
 @media (max-width: 767.98px) {
+  .container {
+    min-width: 100vw;
+  }
   nav {
     display: flex;
     justify-content: space-between;
+    border-bottom-left-radius: 0% !important;
+    border-bottom-right-radius: 0% !important;
   }
   .image-container {
     justify-content: flex-start;
@@ -494,6 +666,49 @@ nav {
   /* Hide-on-scroll behavior */
   #nav-container.nav-hidden {
     transform: translateY(-100%);
+  }
+  /* Mobile stacking order: video (0) < header-img (1) < overlay (2) < text-holder (3) */
+  /* #video-holder,
+  .background-video {
+    z-index: 0 !important;
+  } */
+  .header-img {
+    left: -20%;
+    /* z-index: 0 !important; */
+  }
+  /* Hide external overlay on mobile and use a layered pseudo-element inside header */
+  .overlay {
+    width: 100vw;
+    /* display: none !important; */
+  }
+  .header {
+    width: 100vw;
+    position: relative;
+    top: -5px;
+    /* border: 1px solid var(--text-color-secondry); */
+  }
+  .header::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background-image: radial-gradient(
+      circle at center,
+      rgba(0, 0, 0, 0.9) 100%,
+      var(--main-color) 100%
+    );
+    opacity: 0.91;
+    z-index: 1;
+    pointer-events: none;
+  }
+  .text-holder,
+  .text-holders {
+    /* HTML uses .text-holders */
+    position: relative;
+    z-index: 2 !important;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
   }
 }
 .hidden {
