@@ -151,4 +151,106 @@ window.addEventListener("scroll", function () {
   lastScrollTop = currentScroll <= 0 ? 0 : currentScroll; // Prevent negative scrolling
 });
 
-/* -------------------- Header part -------------------- */
+/* -------------------- Templates part -------------------- */
+// ...existing code...
+
+/* -------------------- Templates part -------------------- */
+const templateItems = document.querySelectorAll(".template-items");
+const templateImages = document.querySelectorAll(".template-images img");
+
+templateItems.forEach((item, idx) => {
+  item.addEventListener("click", () => {
+    // Activate clicked item
+    templateItems.forEach((el) => el.classList.remove("active"));
+    item.classList.add("active");
+
+    // Show matching image by index
+    templateImages.forEach((img) => img.classList.remove("active"));
+    if (templateImages[idx]) {
+      templateImages[idx].classList.add("active");
+      // console.log("Active template image:", templateImages[idx]);
+    }
+  });
+
+  // Press visual feedback
+  const press = () => item.classList.add("pressed");
+  const release = () => item.classList.remove("pressed");
+  item.addEventListener("mousedown", press);
+  item.addEventListener("mouseup", release);
+  item.addEventListener("mouseleave", release);
+  item.addEventListener("touchstart", press, { passive: true });
+  item.addEventListener("touchend", release);
+  item.addEventListener("touchcancel", release);
+});
+
+// ...existing code...
+
+// Cursor-following tooltip for elements with [data-tooltip]
+(function () {
+  const OFFSET = 12; // px from cursor
+  let activeEl = null;
+
+  // Create singleton tooltip
+  const tip = document.createElement("div");
+  tip.className = "cursor-tooltip";
+  document.body.appendChild(tip);
+
+  function positionTip(clientX, clientY) {
+    const { innerWidth: vw, innerHeight: vh } = window;
+    const rect = tip.getBoundingClientRect();
+    let x = clientX + OFFSET;
+    let y = clientY + OFFSET;
+
+    // Keep inside viewport
+    if (x + rect.width + 8 > vw) x = clientX - rect.width - OFFSET;
+    if (y + rect.height + 8 > vh) y = clientY - rect.height - OFFSET;
+
+    tip.style.left = x + "px";
+    tip.style.top = y + "px";
+  }
+
+  document.addEventListener("mouseover", (e) => {
+    const el = e.target.closest("[data-tooltip]");
+    if (!el) return;
+    activeEl = el;
+    tip.textContent = el.getAttribute("data-tooltip") || "";
+    tip.classList.add("show");
+    positionTip(e.clientX, e.clientY);
+  });
+
+  document.addEventListener("mousemove", (e) => {
+    if (!activeEl) return;
+    positionTip(e.clientX, e.clientY);
+  });
+
+  document.addEventListener("mouseout", (e) => {
+    if (!activeEl) return;
+    if (
+      e.relatedTarget &&
+      (e.relatedTarget === activeEl || activeEl.contains(e.relatedTarget))
+    )
+      return;
+    activeEl = null;
+    tip.classList.remove("show");
+  });
+
+  // Basic touch support: show near touch, hide on end
+  document.addEventListener(
+    "touchstart",
+    (e) => {
+      const t = e.target.closest("[data-tooltip]");
+      if (!t) return;
+      activeEl = t;
+      tip.textContent = t.getAttribute("data-tooltip") || "";
+      const touch = e.touches[0];
+      tip.classList.add("show");
+      positionTip(touch.clientX, touch.clientY);
+    },
+    { passive: true }
+  );
+
+  document.addEventListener("touchend", () => {
+    activeEl = null;
+    tip.classList.remove("show");
+  });
+})();

@@ -444,6 +444,7 @@ nav {
 .header {
   width: 100%;
   height: 470px;
+  padding-left: 120px;
   /* border: 1px solid var(--text-color-secondry); */
   display: flex;
   align-items: center;
@@ -464,7 +465,7 @@ nav {
 .background-video {
   position: absolute;
   max-width: 100%;
-  height: 470px;
+  height: 469px;
   object-fit: cover;
   z-index: -2;
   opacity: 0.8;
@@ -484,7 +485,7 @@ nav {
   height: 100%;
   background-image: radial-gradient(
     circle at center,
-    rgba(0, 0, 0, 0.9) 100%,
+    var(--main-color) 100%,
     var(--main-color) 100%
   );
   opacity: 0.91;
@@ -523,6 +524,7 @@ nav {
   position: relative;
   background: linear-gradient(225deg, #ff0c00, #fd8925);
   overflow: hidden;
+  z-index: 0; /* create stacking context so ::before can sit behind */
 }
 
 #button-holder button:first-child::before {
@@ -537,6 +539,8 @@ nav {
   opacity: 1;
   transition: transform 0.6s cubic-bezier(0.4, 0, 0.2, 1);
   transform: translateY(100%);
+  z-index: -1;
+  pointer-events: none;
 }
 
 #button-holder button:first-child:hover::before {
@@ -557,6 +561,7 @@ nav {
     rgba(54, 89, 108, 1) 100%
   );
   overflow: hidden; /* Add this to contain the sliding gradient */
+  z-index: 0; /* create stacking context so ::before can sit behind */
 }
 #button-holder button:last-child::before {
   content: "";
@@ -575,6 +580,8 @@ nav {
   opacity: 1;
   transition: transform 0.6s cubic-bezier(0.4, 0, 0.2, 1);
   transform: translateY(80%);
+  z-index: -1;
+  pointer-events: none;
 }
 
 #button-holder button:last-child:hover::before {
@@ -583,10 +590,186 @@ nav {
 
 /* -------------------- Header part end -------------------- */
 
+/* -------------------- Template part end -------------------- */
+#template-holder {
+  width: 1100px;
+  height: auto;
+  background: linear-gradient(116.91deg, #e3a5724f, #5780e661) no-repeat;
+  border: 1px solid hsla(0, 0%, 100%, 0.1);
+  border-radius: 24px;
+  box-shadow: inset 0 0.450581px #ffffff4d, 0 0 36.0465px #ffffff0f;
+  padding: 0.5rem;
+  position: relative;
+}
+.templates {
+  width: 100%;
+  height: 100%;
+  background-color: var(--main-color);
+  border-radius: 24px;
+  /* border: 1px solid var(--text-color-secondry); */
+}
+.template-list {
+  height: 15%;
+}
+.template-list ul {
+  height: auto;
+  list-style: none;
+  display: flex;
+  flex-shrink: 0;
+  justify-content: space-around;
+  align-items: center;
+  padding: 12px 5px;
+  margin: 0%;
+}
+.template-items {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  width: 19%;
+  height: 120px;
+  text-align: left;
+  outline: none;
+  color: var(--text-color-primary);
+  cursor: pointer;
+  border-radius: 10px;
+  padding: 24px;
+  font-size: 14px;
+  --color-linear-top: #251e32;
+  --color-linear-bottom: #17121f;
+  --color-radial-center: transparent;
+  background-image: radial-gradient(
+      circle closest-corner at 55% 185%,
+      var(--color-radial-center),
+      rgba(38, 33, 73, 0)
+    ),
+    linear-gradient(180deg, var(--color-linear-top), var(--color-linear-bottom));
+  border: 1px solid hsla(0, 0%, 100%, 0.1);
+  box-shadow: inset 0 0 #fff3, 0 0 8px #000;
+  transition: transform 120ms ease; /* smooth press/release */
+  will-change: transform;
+  user-select: none;
+}
+.template-items p {
+  line-height: 20px;
+  margin: 0%;
+  padding: 0%;
+}
+.template-items p b {
+  color: var(--color-primary-hover);
+  font-weight: 500;
+}
+.template-items:hover {
+  background-image: radial-gradient(
+      circle closest-corner at 55% 185%,
+      var(--color-radial-center),
+      #241e31
+    ),
+    linear-gradient(180deg, var(--color-linear-top), var(--color-linear-bottom));
+
+  border-color: #4f4070;
+}
+.template-items.active {
+  color: var(--text-white);
+  background: #3f2c5f;
+  background: linear-gradient(
+    180deg,
+    rgba(63, 44, 95, 1) 0%,
+    rgba(82, 54, 128, 1) 50%
+  );
+}
+.template-items.pressed {
+  transform: scale(0.9);
+}
+
+.template-images {
+  width: 100%;
+  height: 85%;
+  border-bottom-left-radius: 24px;
+  border-bottom-right-radius: 24px;
+  padding: 3px 1px;
+  overflow: hidden;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.template-images img {
+  display: none;
+  border-bottom-left-radius: 24px;
+  border-bottom-right-radius: 24px;
+}
+.template-images img.active {
+  display: block;
+}
+
+/* Cursor-following tooltip */
+.cursor-tooltip {
+  position: fixed;
+  z-index: 9999;
+  pointer-events: none;
+  max-width: 160px;
+
+  padding: 10px;
+  font: 300 13px/1.3 "Geomanist", system-ui, sans-serif;
+  color: #fff;
+  background: rgb(53, 52, 52);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  border-radius: 8px;
+  box-shadow: 0 6px 24px rgba(0, 0, 0, 0.25);
+  opacity: 0;
+  transform: translate3d(0, 0, 0) scale(0.98);
+  transition: opacity 120ms ease, transform 120ms ease;
+}
+
+.cursor-tooltip.show {
+  opacity: 1;
+  transform: translate3d(0, 0, 0) scale(1);
+}
+
+.template-md {
+  display: none;
+}
+#template-md {
+  width: 100%;
+}
+#template-md div.col-12 {
+  background-color: var(--main-color);
+  width: 100%;
+  height: auto;
+  border-radius: 24px;
+  color: var(--text-color-primary);
+  cursor: pointer;
+  border-radius: 20px;
+  padding: 14px;
+  margin-top: 20px;
+  margin-bottom: 15px;
+  font-size: 14px;
+  background: linear-gradient(136deg, #211a2e, #000);
+  border: 1px solid hsla(0, 0%, 100%, 0.1);
+  user-select: none;
+}
+.temp-content div.col-4 {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  text-align: left;
+  padding-left: 7%;
+  font-size: 17px;
+  font-weight: 300;
+}
+.temp-content div.col-4 p b {
+  font-size: 20px;
+  font-weight: 500;
+}
+
+.temp-content div.col-8 img {
+  border-radius: 20px;
+}
+/* -------------------- Template part end -------------------- */
+
 /* -------------------- Media Queries -------------------- */
 @media (min-width: 1200px) {
   .container {
-    min-width: 1200px;
+    max-width: 1200px !important;
   }
 
   .overlay {
@@ -640,7 +823,7 @@ nav {
     transform: translateY(-100%);
   }
   .container {
-    max-width: 900px;
+    max-width: 100%;
   }
   .nav-links .github span:not(:last-child) {
     display: none;
@@ -709,6 +892,11 @@ nav {
     flex-direction: column;
     justify-content: center;
     align-items: center;
+  }
+  .temp-content div.col-4 {
+    align-items: center;
+    padding-left: 0 !important;
+    margin-bottom: 5%;
   }
 }
 .hidden {
