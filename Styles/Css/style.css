@@ -61,7 +61,7 @@ body {
   background-color: var(--main-color);
   color: var(--text-color-primary);
   font-family: "Geomanist", sans-serif;
-  padding-top: 78px; /* nav height + container padding */
+  padding-top: 78px;
 }
 ::-webkit-scrollbar {
   width: 10px;
@@ -117,8 +117,6 @@ body {
 #nav-container {
   width: 100%;
   height: auto;
-  display: flex;
-  justify-content: center;
   padding: 4px;
   position: fixed;
   top: 0;
@@ -126,9 +124,9 @@ body {
   z-index: 1000;
   transition: transform 0.3s ease;
 }
-nav {
+/* nav {
   width: 100%;
-  height: 70px;
+  min-height: 70px;
   display: flex;
   align-items: center;
   background-color: var(--navbar-color);
@@ -136,7 +134,25 @@ nav {
   border: 1px solid rgb(31 25 42);
   border-radius: 8px;
   padding: 0px 10px;
+} */
+
+nav {
+  background-color: var(--navbar-color);
+  color: var(--text-color-primary);
+  border: 1px solid rgb(31 25 42);
+  padding: 0 10px;
+  border-radius: 8px;
+  height: 100%;
 }
+nav div.container-fluid {
+  padding: 0px 20px;
+}
+
+.navbar-collapse {
+  order: 2;
+  height: 100% !important;
+}
+
 .image-container {
   position: relative;
   height: 100%;
@@ -161,36 +177,26 @@ nav {
   position: relative;
 }
 
-.nav-list {
-  display: flex;
-  margin: 0%;
-  padding: 0px 15px;
+.navbar-nav .nav-item {
   height: 100%;
-}
-.nav-list .nav-item {
-  height: 100%;
-  list-style: none;
+  margin-left: 35px;
   cursor: pointer;
-  transition: color 0.3s ease;
-  position: relative;
+  height: inherit;
   display: flex;
   align-items: center;
-  justify-content: center;
+  padding: 20px 0px;
 }
-.nav-list .nav-item:not(:first-child) {
-  margin-left: 35px;
-}
-.nav-list .nav-item i {
+.navbar-nav .nav-item i {
   font-size: 12px;
 }
-.nav-list .nav-item:hover {
-  color: var(--text-white);
+.navbar-nav .nav-item:hover {
+  color: var(--color-primary-hover);
 }
 
 .drop-list {
   width: 200px;
   position: absolute;
-  top: 68px;
+  top: 64px;
   left: -20px;
   opacity: 0;
   padding: 4px;
@@ -212,6 +218,7 @@ nav {
   border-radius: 8px;
 }
 .drop-list li:hover {
+  color: white !important;
   cursor: pointer;
   background-color: rgb(51, 51, 51);
 }
@@ -230,6 +237,8 @@ nav {
   justify-content: flex-end;
   align-items: center;
   gap: 20px;
+  order: 3;
+  padding: 15px 0px;
 }
 .nav-links .github {
   --gradient-opacity: 0;
@@ -263,6 +272,7 @@ nav {
   cursor: pointer;
   transition: color 0.3s ease;
 }
+
 .nav-links .sign-in:hover {
   color: var(--text-white);
 }
@@ -330,9 +340,6 @@ nav {
 .nav-links .sign-in {
   font-size: 16px;
 }
-.nav-links .github span:not(:last-child) {
-  display: none;
-}
 .nav-links .github .fa-github {
   font-size: 18px;
 }
@@ -361,6 +368,7 @@ nav {
   box-shadow: 0 5px 40px -10px #ff9b26, inset -15px 13px 20px #4c5dff,
     inset 20px -55px 20px #ee4f27;
 }
+
 .menu-list {
   position: fixed;
   width: 99%;
@@ -380,9 +388,7 @@ nav {
   scrollbar-width: thin;
   scrollbar-color: var(--text-color-primary) var(--navbar-color);
 }
-.menuActive {
-  display: flex;
-}
+
 .menu-item {
   list-style: none;
   font-size: 20px;
@@ -425,7 +431,6 @@ nav {
   transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
-/* Show items when panel is open */
 .menu-item ul.menu-accordian-list[style*="max-height"] {
   opacity: 1;
   visibility: visible;
@@ -438,10 +443,10 @@ nav {
 @media (min-width: 1200px) {
 }
 @media screen and (min-width: 992px) and (max-width: 1199.98px) {
-  .nav-list {
+  .navbar-nav {
     padding-right: 0;
   }
-  .nav-list .nav-item {
+  .navbar-nav .nav-item {
     font-size: 14px;
     margin-left: 28px !important;
   }
@@ -466,17 +471,40 @@ nav {
   }
 }
 @media screen and (min-width: 768px) and (max-width: 991.98px) {
+  hr {
+    margin: 0%;
+  }
   nav {
     display: flex;
     justify-content: space-between;
   }
   .image-container {
     justify-content: flex-start;
-    margin-left: 20px;
+    margin-left: 10px;
   }
-  /* Hide-on-scroll behavior */
+  .nav-item {
+    margin-left: 10 !important;
+    font-size: 18px;
+    color: var(--color-primary-hover);
+  }
   #nav-container.nav-hidden {
     transform: translateY(-100%);
+  }
+  .nav-links .github span:not(:last-child) {
+    display: none;
+  }
+  #mainNavList .navbar-nav .nav-item {
+    width: 100%;
+  }
+  #mainNavList .nav-link {
+    padding: 0.5rem 1rem;
+    display: block;
+  }
+  .navbar-collapse {
+    order: 3;
+  }
+  .nav-links {
+    order: 2;
   }
 }
 @media (max-width: 767.98px) {
@@ -491,7 +519,6 @@ nav {
   .nav-links .github {
     display: none;
   }
-  /* Hide-on-scroll behavior */
   #nav-container.nav-hidden {
     transform: translateY(-100%);
   }

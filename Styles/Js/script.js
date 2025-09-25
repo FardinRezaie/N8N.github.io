@@ -5,14 +5,13 @@ container.addEventListener("mouseenter", function () {
   images[0].classList.remove("active");
   images[1].classList.add("active");
 });
-
 container.addEventListener("mouseleave", function () {
   images[1].classList.remove("active");
   images[0].classList.add("active");
 });
 
 /*  Dropdown functionality for navigation items */
-const navItems = document.querySelectorAll(".nav-item.drop-down");
+const navItems = document.querySelectorAll(".nav-item.dropdown");
 navItems.forEach((item) => {
   item.addEventListener("mouseenter", function () {
     const dropdown = item.querySelector(".drop-list");
@@ -93,13 +92,12 @@ menuItems.forEach((item) => {
 });
 
 const menuIcon = document.querySelector(".menu-icon");
-const menuList = document.querySelector(".menu-list");
+const menuList = document.querySelector(".navbar-nav");
 
 menuIcon.addEventListener("click", function () {
-  this.classList.toggle("fa-bars");
-  this.classList.toggle("fa-xmark");
+  this.classList.toggle("bi-list");
+  this.classList.toggle("bi-x");
   this.classList.toggle("active");
-  menuList.classList.toggle("menuActive");
 
   // Toggle body scroll lock
   document.body.style.overflow = menuList.classList.contains("menuActive")
