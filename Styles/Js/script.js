@@ -6,14 +6,13 @@ container.addEventListener("mouseenter", function () {
   images[0].classList.remove("active");
   images[1].classList.add("active");
 });
-
 container.addEventListener("mouseleave", function () {
   images[1].classList.remove("active");
   images[0].classList.add("active");
 });
 
 /*  Dropdown functionality for navigation items */
-const navItems = document.querySelectorAll(".nav-item.drop-down");
+const navItems = document.querySelectorAll(".nav-item.dropdown");
 navItems.forEach((item) => {
   item.addEventListener("mouseenter", function () {
     const dropdown = item.querySelector(".drop-list");
@@ -94,28 +93,27 @@ menuItems.forEach((item) => {
 });
 
 const menuIcon = document.querySelector(".menu-icon");
-const menuList = document.querySelector(".menu-list");
+const collapseEl = document.getElementById("navbarSupportedContent");
 
-menuIcon.addEventListener("click", function () {
-  this.classList.toggle("fa-bars");
-  this.classList.toggle("fa-xmark");
-  this.classList.toggle("active");
-  menuList.classList.toggle("menuActive");
-
-  // Toggle body scroll lock
-  document.body.style.overflow = menuList.classList.contains("menuActive")
-    ? "hidden"
-    : "";
-
-  // Ensure nav is visible when menu is open
-  if (menuList.classList.contains("menuActive")) {
+if (collapseEl) {
+  collapseEl.addEventListener("show.bs.collapse", () => {
+    // Switch icon to X
+    if (menuIcon) {
+      menuIcon.classList.remove("bi-list");
+      menuIcon.classList.add("bi-x", "active");
+    }
+    // Prevent body scroll behind expanded nav
+    document.body.style.overflow = "hidden";
     navContainer.classList.remove("nav-hidden");
-  }
-
-  // Clear any inline sizing so it can auto-size naturally
-  menuList.style.maxHeight = "";
-  menuList.style.height = "";
-});
+  });
+  collapseEl.addEventListener("hidden.bs.collapse", () => {
+    if (menuIcon) {
+      menuIcon.classList.add("bi-list");
+      menuIcon.classList.remove("bi-x", "active");
+    }
+    document.body.style.overflow = "";
+  });
+}
 
 // Hide-on-scroll behavior
 let lastScrollTop = 0;

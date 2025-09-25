@@ -6,75 +6,73 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>N8N</title>
     <link rel="stylesheet" href="Styles/Css/all.css">
-    <link rel="stylesheet" href="Styles/Css/bootstrap.min.css">
+    <!-- <link rel="stylesheet" href="Styles/Css/bootstrap.min.css"> -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.13.1/font/bootstrap-icons.min.css">
     <link rel="stylesheet" href="Styles/Css/materialdesignicons.css">
     <link rel="stylesheet" href="Styles/Css/style.css">
 </head>
 
+
 <body>
-    <!------------ Nav part start ------------>
     <div id="nav-container">
-        <nav class="row">
-            <div class="image-container col-2 col-lg-1 col-xl-1">
-                <img src="assest/nav-logo.png" alt="nav-logo" class="nav-logo active img-fluid">
-                <img src="assest/nav-logo-hover.png" alt="nav-logo" class="nav-logo img-fluid">
-            </div>
-            <!---->
-            <ul class="nav-list d-none d-lg-flex d-xl-flex d-xxl-flex col-7">
-                <li class="nav-item drop-down"><span>Product <i class="fa-solid fa-chevron-down"></i></span>
-                    <ul class="drop-list dropsmall">
-                        <li>Product overview</li>
-                        <li>Integrations</li>
-                        <li>Templates</li>
-                        <li>AI</li>
-                    </ul>
-                </li>
-                <li class="nav-item drop-down"><span>Use cases <i class="fa-solid fa-chevron-down"></i></span>
-                    <ul class="drop-list" style="font-size: 15px;">
-                        <li>Building AI agents</li>
-                        <li>IT operations</li>
-                        <li>Security operations</li>
-                        <li>Embedded automation</li>
-                        <li>Lead automation</li>
-                        <li>Super charge your CRM</li>
-                        <li>Limitless integerations</li>
-                        <li>Backend prototyping</li>
-                    </ul>
-                </li>
-                <li class="nav-item drop-down"><span>Docs <i class="fa-solid fa-chevron-down"></i></span>
-                    <ul class="drop-list dropsmall">
-                        <li>Self-host n8n</li>
-                        <li>Documentation</li>
-                        <li>Our license</li>
-                        <li>Release notes</li>
-                    </ul>
-                </li>
-                <li class="nav-item drop-down"><span>Community <i class="fa-solid fa-chevron-down"></i></span>
-                    <ul class="drop-list dropsmall">
-                        <li>Forum</li>
-                        <li>Discord</li>
-                        <li>Blog</li>
-                        <li>Creators</li>
-                        <li>Contribute</li>
-                        <li>Expert partners</li>
-                        <li>Support</li>
-                    </ul>
-                </li>
-                <li class="nav-item">Enterprise</li>
-                <li class="nav-item">Pricing</li>
-            </ul>
-            <!---->
-            <div class="nav-links col-7 col-lg-4 col-xl-4 pe-md-0 pe-sm-0">
-                <a href="#" class="github">
-                    <i class="fa-brands fa-github"></i>
-                    <span id="#github-text">Github</span>
-                    <i class="fa-solid fa-star"></i>
-                    <span>126,124</span>
+        <nav class="navbar navbar-expand-lg navbar-dark p-0">
+            <div class="container-fluid">
+                <a class="image-container navbar-brand col-2 col-lg-1 col-xl-1" href="#">
+                    <img src="Media/nav-logo.png" alt="Logo" class="nav-logo active img-fluid">
+                    <img src="Media/nav-logo-hover.png" alt="nav-logo" class="nav-logo img-fluid">
                 </a>
-                <span class="sign-in">Sign in</span>
-                <div class="menu-hidden d-lg-none">
-                    <i class="menu-icon fa-solid fa-bars "></i>
-                    <ul class="menu-list col-md-7 ">
+                <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                    <hr>
+                    <ul class="navbar-nav me-auto mb-2 mb-lg-0 d-none d-lg-flex">
+                        <li class="nav-item dropdown">
+                            <span>Product <i class="fa-solid fa-chevron-down"></i></span>
+                            <ul class="dropdown-menu drop-list dropsmall">
+                                <li class="dropdown-item">Product overview</li>
+                                <li class="dropdown-item">Integrations</li>
+                                <li class="dropdown-item">Templates</li>
+                                <li class="dropdown-item">AI</li>
+                            </ul>
+                        </li>
+                        <li class="nav-item dropdown">
+                            <span>Use cases <i class="fa-solid fa-chevron-down"></i></span>
+                            <ul class="dropdown-menu drop-list" style="font-size: 15px;">
+                                <li class="dropdown-item">Building AI agents</li>
+                                <li class="dropdown-item">IT operations</li>
+                                <li class="dropdown-item">Security operations</li>
+                                <li class="dropdown-item">Embedded automation</li>
+                                <li class="dropdown-item">Lead automation</li>
+                                <li class="dropdown-item">Super charge your CRM</li>
+                                <li class="dropdown-item">Limitless integerations</li>
+                                <li class="dropdown-item">Backend prototyping</li>
+                            </ul>
+                        </li>
+                        <li class="nav-item dropdown">
+                            <span>Docs <i class="fa-solid fa-chevron-down"></i></span>
+                            <ul class="dropdown-menu drop-list dropsmall">
+                                <li class="dropdown-item">Self-host n8n</li>
+                                <li class="dropdown-item">Documentation</li>
+                                <li class="dropdown-item">Our license</li>
+                                <li class="dropdown-item">Release notes</li>
+                            </ul>
+                        </li>
+                        <li class="nav-item dropdown">
+                            <span>Community <i class="fa-solid fa-chevron-down"></i></span>
+                            <ul class="dropdown-menu drop-list dropsmall">
+                                <li class="dropdown-item">Forum</li>
+                                <li class="dropdown-item">Discord</li>
+                                <li class="dropdown-item">Blog</li>
+                                <li class="dropdown-item">Creators</li>
+                                <li class="dropdown-item">Contribute</li>
+                                <li class="dropdown-item">Expert partners</li>
+                                <li class="dropdown-item">Support</li>
+                            </ul>
+                        </li>
+                        <li class="nav-item">Enterprise</li>
+                        <li class="nav-item">Pricing</li>
+                    </ul>
+                    <ul class="menu-hidden d-lg-none menu-list col-md-7 ">
                         <li class="menu-item">
                             <span>Product <i class="chevron-menu fa-solid fa-chevron-down"></i></span>
                             <ul class="accordian-menu menu-accordian-list">
@@ -122,8 +120,23 @@
                         <li class="menu-item">Pricing</li>
                     </ul>
                 </div>
-                <a href="#" class="started">Get Started</a>
+                <div class="nav-links ms-auto">
+                    <a href="#" class="github">
+                        <i class="fa-brands fa-github"></i>
+                        <span id="#github-text">Github</span>
+                        <i class="fa-solid fa-star"></i>
+                        <span>126,124</span>
+                    </a>
+                    <span class="sign-in">Sign in</span>
+                    <a class="navbar-toggler  p-0 border-0" type="button" data-bs-toggle="collapse"
+                        data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
+                        aria-expanded="false" aria-label="Toggle navigation">
+                        <i class="bi bi-list menu-icon"></i>
+                    </a>
+                    <a href="#" class="started">Get Started</a>
+                </div>
             </div>
+
         </nav>
     </div>
     <!------------ Nav part end ------------>
@@ -298,30 +311,21 @@
             </div>
         </div>
     </div>
-    <!-- 
-    <br><br><br>
-    <h1>Flexible AI workflow automation</h1>
-    <br><br>
-    <h1>Flexible AI workflow automation</h1>
-    <br><br>
-    <h1>Flexible AI workflow automation</h1>
-    <br><br>
-    <h1>Flexible AI workflow automation</h1>
-    <br><br>
-    <h1>Flexible AI workflow automation</h1>
-    <br><br>
-    <h1>Flexible AI workflow automation</h1>
-    <br><br>
-    <h1>Flexible AI workflow automation</h1>
-    <br><br>
-    <h1>Flexible AI workflow automation</h1>
-    <br><br>-->
+
     <!------------ Header part end ------------>
 
+    =======
+    <h1>
+        Flexible AI workflow automation
+    </h1>
+    <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+    >>>>>>> Navbra-update
 
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI"
+        crossorigin="anonymous"></script>
+    <!-- <script src="Styles/Js/bootstrap.js"></script> -->
 
-
-    <script src="Styles/Js/bootstrap.js"></script>
     <script src="Styles/Js/script.js"></script>
 </body>
 
