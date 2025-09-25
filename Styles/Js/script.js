@@ -92,27 +92,27 @@ menuItems.forEach((item) => {
 });
 
 const menuIcon = document.querySelector(".menu-icon");
-const menuList = document.querySelector(".navbar-nav");
+const collapseEl = document.getElementById("navbarSupportedContent");
 
-menuIcon.addEventListener("click", function () {
-  this.classList.toggle("bi-list");
-  this.classList.toggle("bi-x");
-  this.classList.toggle("active");
-
-  // Toggle body scroll lock
-  document.body.style.overflow = menuList.classList.contains("menuActive")
-    ? "hidden"
-    : "";
-
-  // Ensure nav is visible when menu is open
-  if (menuList.classList.contains("menuActive")) {
+if (collapseEl) {
+  collapseEl.addEventListener("show.bs.collapse", () => {
+    // Switch icon to X
+    if (menuIcon) {
+      menuIcon.classList.remove("bi-list");
+      menuIcon.classList.add("bi-x", "active");
+    }
+    // Prevent body scroll behind expanded nav
+    document.body.style.overflow = "hidden";
     navContainer.classList.remove("nav-hidden");
-  }
-
-  // Clear any inline sizing so it can auto-size naturally
-  menuList.style.maxHeight = "";
-  menuList.style.height = "";
-});
+  });
+  collapseEl.addEventListener("hidden.bs.collapse", () => {
+    if (menuIcon) {
+      menuIcon.classList.add("bi-list");
+      menuIcon.classList.remove("bi-x", "active");
+    }
+    document.body.style.overflow = "";
+  });
+}
 
 // Hide-on-scroll behavior
 let lastScrollTop = 0;

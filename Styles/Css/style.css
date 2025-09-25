@@ -56,6 +56,8 @@
   padding: 0%;
   margin: 0%;
   box-sizing: border-box;
+  text-decoration: none;
+  user-select: none;
 }
 body {
   background-color: var(--main-color);
@@ -142,7 +144,7 @@ nav {
   border: 1px solid rgb(31 25 42);
   padding: 0 10px;
   border-radius: 8px;
-  height: 100%;
+  /* Allow height to grow with collapsing content */
 }
 nav div.container-fluid {
   padding: 0px 20px;
@@ -150,7 +152,7 @@ nav div.container-fluid {
 
 .navbar-collapse {
   order: 2;
-  height: 100% !important;
+  /* Let collapse element auto-size vertically */
 }
 
 .image-container {
@@ -196,7 +198,7 @@ nav div.container-fluid {
 .drop-list {
   width: 200px;
   position: absolute;
-  top: 64px;
+  top: 62px;
   left: -20px;
   opacity: 0;
   padding: 4px;
@@ -370,23 +372,29 @@ nav div.container-fluid {
 }
 
 .menu-list {
-  position: fixed;
-  width: 99%;
-  top: 78px; /* nav height + container padding */
-  left: 0;
-  right: 0;
-  margin: 0 auto;
-  display: none;
+  /* Mobile menu list lives inside the collapsing container; no fixed positioning */
+  /* position: static; */
+  width: 100% !important;
+  margin: 0;
+  padding: 10px 20px 20px;
+  /* display: flex; */
   flex-direction: column;
   background-color: var(--navbar-color);
   color: var(--text-color-primary);
-  border: 1px solid rgb(31 25 42);
-  padding: 10px 30px;
-  max-height: calc(100vh - 78px); /* viewport height minus nav height */
-  overflow-y: auto;
-  /* Show scrollbar for menu content */
+  /* border: 1px solid rgb(31 25 42); */
+  border-radius: 8px;
+  max-height: none;
+  overflow: visible;
   scrollbar-width: thin;
   scrollbar-color: var(--text-color-primary) var(--navbar-color);
+}
+
+/* Hide the mobile list when the collapse wrapper is closed */
+.navbar-collapse:not(.show) .menu-list {
+  display: none !important;
+}
+.navbar-collapse.show .menu-list {
+  display: flex !important;
 }
 
 .menu-item {
@@ -522,7 +530,19 @@ nav div.container-fluid {
   #nav-container.nav-hidden {
     transform: translateY(-100%);
   }
+  .navbar-collapse {
+    order: 3;
+  }
+  .nav-links {
+    order: 2;
+  }
 }
+@media (max-width: 576px) {
+  .nav-links .sign-in {
+    display: none;
+  }
+}
+
 .hidden {
   display: none;
 }
