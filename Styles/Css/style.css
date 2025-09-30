@@ -63,7 +63,7 @@ body {
   background-color: var(--main-color);
   color: var(--text-color-primary);
   font-family: "Geomanist", sans-serif;
-  padding-top: 78px;
+  padding-top: 68px;
 }
 ::-webkit-scrollbar {
   width: 10px;
@@ -455,63 +455,65 @@ nav div.container-fluid {
   /* border: 1px solid var(--color-primary-hover); */
 }
 /* -------------------- Header part start -------------------- */
-.header {
+header {
   width: 100%;
   height: 470px;
-  padding-left: 120px;
-  /* border: 1px solid var(--text-color-secondry); */
+  /* padding-left: 120px; */
   display: flex;
   align-items: center;
   background-repeat: no-repeat;
   background-size: cover;
   position: relative;
   z-index: 2;
+  /* border-bottom: 1px solid var(--text-color-secondry); */
 }
+
 #video-holder {
   width: 100%;
-  height: auto;
-  position: relative;
+  height: inherit;
+  position: absolute;
   display: flex;
   justify-content: center;
   justify-self: center;
   z-index: -2;
-}
-.background-video {
-  position: absolute;
-  max-width: 100%;
-  height: 469px;
-  object-fit: cover;
-  z-index: -2;
-  opacity: 0.8;
-}
-.header-img {
-  position: absolute;
-  width: 700px;
-  height: auto;
-  left: 30%;
-  bottom: 0%;
   /* border: 1px solid var(--text-color-secondry); */
-  z-index: 0;
 }
 .overlay {
   position: absolute;
   width: 100vw;
   height: 100%;
-  background-image: radial-gradient(
-    circle at center,
-    var(--main-color) 100%,
-    var(--main-color) 100%
-  );
-  opacity: 0.91;
+  background-color: var(--main-color);
+  opacity: 0.6;
   z-index: -1;
 }
-.text-holder {
-  width: 560px;
-  /* border: 1px solid var(--text-color-secondry); */
-  margin-left: 120px;
-  z-index: 0;
+.background-video {
+  position: absolute;
+  width: 100%;
+  height: inherit;
+  object-fit: cover;
+  z-index: -2;
+  mask: linear-gradient(var(--main-color), transparent);
+  filter: saturate(200%) blur(2px);
 }
-.text-holder h1 {
+
+/* .header {
+  border: 1px solid var(--text-color-secondry);
+} */
+.header-img {
+  width: 700px;
+  height: auto;
+  left: 30%;
+  position: absolute;
+  align-self: flex-end;
+  z-index: 0;
+  filter: brightness(110%);
+}
+
+.text-holders {
+  width: 600px;
+  z-index: 1;
+}
+.text-holders h1 {
   font-size: 38px;
   font-weight: 500;
   cursor: text;
@@ -522,7 +524,10 @@ nav div.container-fluid {
   -webkit-text-fill-color: transparent;
   -webkit-text-stroke: 1px rgba(255, 255, 255, 0.1);
 }
-
+#button-holder {
+  width: 100%;
+  /* border: 1px solid var(--text-color-secondry); */
+}
 #button-holder button {
   outline: none;
   border: 0px solid white;
@@ -817,11 +822,17 @@ nav div.container-fluid {
     font-size: 14px;
     padding: 4px 12px;
   }
-  .text-holder {
+  .header-img {
+    left: 20%;
+  }
+  .text-holders {
     margin-left: 0;
   }
 }
 @media screen and (min-width: 768px) and (max-width: 991.98px) {
+  .container {
+    margin: 0%;
+  }
   hr {
     margin: 0%;
   }
@@ -859,10 +870,17 @@ nav div.container-fluid {
   .nav-links {
     order: 2;
   }
+  .header-img {
+    left: 30%;
+  }
+  .text-holders {
+    margin-left: 30px;
+  }
 }
 @media (max-width: 767.98px) {
   .container {
     min-width: 100vw;
+    padding: 0%;
   }
   nav {
     display: flex;
@@ -885,6 +903,10 @@ nav div.container-fluid {
   .background-video {
     z-index: 0 !important;
   } */
+  .header {
+    justify-content: center;
+  }
+
   .header-img {
     left: -20%;
     /* z-index: 0 !important; */
@@ -913,9 +935,9 @@ nav div.container-fluid {
     z-index: 1;
     pointer-events: none;
   }
-  .text-holder,
   .text-holders {
     /* HTML uses .text-holders */
+    width: 100%;
     position: relative;
     z-index: 2 !important;
     display: flex;
@@ -923,21 +945,50 @@ nav div.container-fluid {
     justify-content: center;
     align-items: center;
   }
+  .text-holders p {
+    padding: 0 12px;
+    text-align: center;
+  }
+  .text-holders p br {
+    display: none;
+  }
   .temp-content div.col-4 {
     align-items: center;
     padding-left: 0 !important;
     margin-bottom: 5%;
-    .navbar-collapse {
-      order: 3;
-    }
-    .nav-links {
-      order: 2;
-    }
+  }
+  .navbar-collapse {
+    order: 3;
+  }
+  .nav-links {
+    order: 2;
+  }
+  #button-holder {
+    width: 100%;
+    text-align: center;
   }
 }
 @media (max-width: 576px) {
   .nav-links .sign-in {
     display: none;
+  }
+  .text-holders {
+    /* HTML uses .text-holders */
+    justify-content: center;
+  }
+  .text-holders h1 {
+    font-size: 36px;
+  }
+  .text-holders p {
+    padding: 0 12px;
+    text-align: center;
+  }
+  .text-holders p br {
+    display: none;
+  }
+  #button-holder button {
+    font-size: 14px;
+    margin-bottom: 10px;
   }
 }
 

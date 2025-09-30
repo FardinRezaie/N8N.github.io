@@ -20,8 +20,8 @@
         <nav class="navbar navbar-expand-lg navbar-dark p-0">
             <div class="container-fluid">
                 <a class="image-container navbar-brand col-2 col-lg-1 col-xl-1" href="#">
-                    <img src="Media/nav-logo.png" alt="Logo" class="nav-logo active img-fluid">
-                    <img src="Media/nav-logo-hover.png" alt="nav-logo" class="nav-logo img-fluid">
+                    <img src="assest/nav-logo.png" alt="Logo" class="nav-logo active img-fluid">
+                    <img src="assest/nav-logo-hover.png" alt="nav-logo" class="nav-logo img-fluid">
                 </a>
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                     <hr>
@@ -142,35 +142,41 @@
     <!------------ Nav part end ------------>
 
     <!------------ Header part start ------------>
-    <div id="video-holder">
-        <video class="background-video" autoplay loop muted playsinline>
-            <source src="assest/home-intro.mp4" type="video/mp4">
-            Your browser does not support the video tag.
-        </video>
-    </div>
-    <div class="container">
+    <header>
+        <div id="video-holder">
+            <video class="background-video" autoplay loop muted playsinline>
+                <source src="assest/home-intro.mp4" type="video/mp4">
+                Your browser does not support the video tag.
+            </video>
+        </div>
         <div class="overlay"></div>
-        <section class="header row">
-            <div class="text-holders">
-                <h1>Flexible AI workflow automation</h1>
-                <h1 id="text-gradient">for technical teams</h1>
-                <br>
-                <p>
-                    Build with the precision of code or the speed of drag-n-drop. Host with <br>on-prem control or
-                    in-the-cloud convenience. n8n gives you more <br>freedom to implement multi-step AI agents and
-                    integrate
-                    apps than <br>any other tool.
-                </p>
-                <br>
-                <div id="button-holder">
-                    <button>Get started for free</button>
-                    <button>Talk for sales</button>
+        <div class="h-100 container">
+            <div class="header row w-100 px-xl-5">
+                <div class="text-holders align-self-center">
+                    <h1>Flexible AI workflow automation</h1>
+                    <h1 id="text-gradient">for technical teams</h1>
+                    <br>
+                    <p>
+                        Build with the precision of code or the speed of drag-n-drop. Host with <br>on-prem control or
+                        in-the-cloud convenience. n8n gives you more <br>freedom to implement multi-step AI agents and
+                        integrate
+                        apps than <br>any other tool.
+                    </p>
+                    <br>
+                    <div id="button-holder" class="">
+                        <button class="col-12 col-sm-3 col-md-4">Get started for free</button>
+                        <button class="col-12 col-sm-2 col-md-3">Talk for sales</button>
+                    </div>
                 </div>
+                <img src="assest/hero-bg.png" alt="" class="header-img img-fluid">
             </div>
-            <img src="assest/hero-bg.png" alt="" class="header-img img-fluid">
-        </section>
-    </div>
-    <div class="container">
+        </div>
+    </header>
+    <!-- 
+    -->
+
+
+    <!-- <div class="container">
         <div id="template-holder" class="d-lg-block d-none">
             <section class="templates">
                 <div class="template-list">
@@ -310,7 +316,7 @@
                 </div>
             </div>
         </div>
-    </div>
+    </div> -->
 
     <!------------ Header part end ------------>
 
