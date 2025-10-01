@@ -118,7 +118,7 @@ if (collapseEl) {
 // Hide-on-scroll behavior
 let lastScrollTop = 0;
 const navContainer = document.getElementById("nav-container");
-
+const menuList = document.querySelector(".menu-list");
 window.addEventListener("scroll", function () {
   // Don't hide nav if mobile menu is open
   if (menuList.classList.contains("menuActive")) {

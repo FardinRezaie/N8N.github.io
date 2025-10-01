@@ -675,7 +675,7 @@ header {
 }
 .template-items p b {
   color: var(--color-primary-hover);
-  font-weight: 500;
+  font-weight: 400;
 }
 .template-items:hover {
   background-image: radial-gradient(
@@ -750,7 +750,7 @@ header {
 #template-md {
   width: 100%;
 }
-#template-md div.col-12 {
+#template-md .template-card.col-12 {
   background-color: var(--main-color);
   width: 100%;
   height: auto;
@@ -766,7 +766,7 @@ header {
   border: 1px solid hsla(0, 0%, 100%, 0.1);
   user-select: none;
 }
-.temp-content div.col-4 {
+.temp-content div.temp-text {
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -775,12 +775,12 @@ header {
   font-size: 17px;
   font-weight: 300;
 }
-.temp-content div.col-4 p b {
+.temp-content div.temp-text p b {
   font-size: 20px;
   font-weight: 500;
 }
 
-.temp-content div.col-8 img {
+.temp-content div.temp-image img {
   border-radius: 20px;
 }
 /* -------------------- Template part end -------------------- */
@@ -828,10 +828,15 @@ header {
   .text-holders {
     margin-left: 0;
   }
+  .template-images img {
+    padding-top: 10px;
+    height: 100%;
+  }
 }
 @media screen and (min-width: 768px) and (max-width: 991.98px) {
   .container {
-    margin: 0%;
+    min-width: 100vw !important;
+    text-align: center;
   }
   hr {
     margin: 0%;
@@ -875,6 +880,10 @@ header {
   }
   .text-holders {
     margin-left: 30px;
+  }
+  #template-md {
+    padding: 0 15px;
+    width: 100%;
   }
 }
 @media (max-width: 767.98px) {
@@ -952,7 +961,7 @@ header {
   .text-holders p br {
     display: none;
   }
-  .temp-content div.col-4 {
+  .temp-content div.temp-text {
     align-items: center;
     padding-left: 0 !important;
     margin-bottom: 5%;
@@ -966,6 +975,10 @@ header {
   #button-holder {
     width: 100%;
     text-align: center;
+  }
+  #template-md {
+    padding: 0 20px;
+    width: 100%;
   }
 }
 @media (max-width: 576px) {
