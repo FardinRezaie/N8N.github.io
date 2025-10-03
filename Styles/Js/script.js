@@ -366,5 +366,126 @@ sliders.forEach((slider) => {
     verticalSlider(slider.track, slider.slides, slider.delay);
   }
 });
-
 /* -------------------- Vertical Slider -------------------- */
+
+/* -------------------- Integration logo -------------------- */
+/* Tilt on Scroll Effect - starts tilted when entering viewport, straightens as you scroll through */
+(function progressiveTilt() {
+  // Wait for DOM to be fully loaded
+  function init() {
+    const tiltElements = document.querySelectorAll(".tilt-element");
+
+    if (!tiltElements.length) {
+      console.warn("No .tilt-element found!");
+      return;
+    }
+
+    function handleScroll() {
+      tiltElements.forEach((element) => {
+        const hasCompleted = element.dataset.tiltCompleted === "true";
+        // Get element position relative to viewport
+        const rect = element.getBoundingClientRect();
+        const elementTop = rect.top;
+        const elementBottom = rect.bottom;
+        const elementHeight = rect.height;
+        const windowHeight = window.innerHeight;
+
+        // Check if element is in viewport
+        const isInViewport = elementTop < windowHeight && elementBottom > 0;
+
+        // Initial state values (match CSS)
+        const initialTranslateX = 5; // percent
+        const initialRotateZ = 5;
+        const initialRotateY = 15;
+        const initialRotateX = 60;
+        const initialOpacity = 0;
+        const finalTransform =
+          "translate3d(0%, 0px, 0px) rotate(0deg) rotateY(0deg) rotateX(0deg)";
+        const finalOpacity = 1;
+
+        if (!isInViewport) {
+          if (hasCompleted) {
+            element.style.transform = finalTransform;
+            element.style.webkitTransform = finalTransform;
+            element.style.opacity = finalOpacity;
+          } else if (elementTop >= windowHeight) {
+            // Ensure pre-entry state when element hasn't animated yet
+            const initialTransform = `translate3d(${initialTranslateX}%, 0px, 0px) rotate(${initialRotateZ}deg) rotateY(${initialRotateY}deg) rotateX(${initialRotateX}deg)`;
+            element.style.transform = initialTransform;
+            element.style.webkitTransform = initialTransform;
+            element.style.opacity = initialOpacity;
+          }
+          return;
+        }
+
+        if (hasCompleted) {
+          element.style.transform = finalTransform;
+          element.style.webkitTransform = finalTransform;
+          element.style.opacity = finalOpacity;
+          return;
+        }
+
+        // Calculate progress based on element center position relative to viewport center
+        // When element center is at bottom of viewport: progress = 0 (fully tilted)
+        // When element center is at middle of viewport: progress = 1 (fully straight)
+
+        const elementCenter = elementTop + elementHeight / 2;
+        const viewportCenter = windowHeight / 2;
+
+        // Distance from viewport center to bottom
+        const maxDistance = windowHeight / 2;
+
+        // Current distance (when element center is at bottom = maxDistance, at center = 0)
+        const currentDistance = elementCenter - viewportCenter;
+
+        // Calculate progress (0 = at bottom/tilted, 1 = at center/straight)
+        let progress = 1 - currentDistance / maxDistance;
+
+        // Clamp between 0 and 1
+        progress = Math.max(0, Math.min(1, progress));
+
+        // Calculate current transform values based on progress
+        const translateX = initialTranslateX * (1 - progress);
+        const rotateX = initialRotateX * (1 - progress);
+        const rotateY = initialRotateY * (1 - progress);
+        const rotateZ = initialRotateZ * (1 - progress);
+
+        // Apply transform and opacity
+        if (progress >= 1) {
+          element.style.transform = finalTransform;
+          element.style.webkitTransform = finalTransform;
+          element.style.opacity = finalOpacity;
+          element.dataset.tiltCompleted = "true";
+        } else {
+          const transform = `translate3d(${translateX}%, 0px, 0px) rotate(${rotateZ}deg) rotateY(${rotateY}deg) rotateX(${rotateX}deg)`;
+          element.style.transform = transform;
+          element.style.webkitTransform = transform; // Safari support
+          element.style.opacity = progress;
+        }
+      });
+    }
+
+    // Use requestAnimationFrame for smooth animation
+    let ticking = false;
+    function onScroll() {
+      if (!ticking) {
+        window.requestAnimationFrame(() => {
+          handleScroll();
+          ticking = false;
+        });
+        ticking = true;
+      }
+    }
+
+    window.addEventListener("scroll", onScroll);
+    handleScroll(); // Initial call
+  }
+
+  // Initialize when DOM is ready
+  if (document.readyState === "loading") {
+    document.addEventListener("DOMContentLoaded", init);
+  } else {
+    init();
+  }
+})();
+/* -------------------- Integration logo -------------------- */
