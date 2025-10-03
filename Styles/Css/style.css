@@ -59,6 +59,10 @@
   text-decoration: none;
   user-select: none;
 }
+a {
+  text-decoration: none;
+  color: var(--text-color-primary);
+}
 body {
   background-color: var(--main-color);
   color: var(--text-color-primary);
@@ -452,6 +456,7 @@ nav div.container-fluid {
   position: relative;
   display: flex;
   justify-content: center;
+  margin: 0 auto;
   /* border: 1px solid var(--color-primary-hover); */
 }
 /* -------------------- Header part start -------------------- */
@@ -515,11 +520,19 @@ header {
 }
 .text-holders h1 {
   font-size: 38px;
-  font-weight: 500;
+  font-weight: 400;
   cursor: text;
 }
+.text-holders h1:first-child {
+  background: linear-gradient(rgba(255, 255, 255, 0.1), rgba(0, 0, 0, 0.2) 58%),
+    linear-gradient(140deg, rgb(255, 255, 255), rgb(124, 101, 161));
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  color: transparent;
+}
 #text-gradient {
-  background: linear-gradient(to left, #ff512f 0%, #f09819 51%, #ff512f 100%);
+  background: linear-gradient(140deg, rgb(255, 155, 38), rgb(238, 79, 39));
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   -webkit-text-stroke: 1px rgba(255, 255, 255, 0.1);
@@ -785,6 +798,277 @@ header {
 }
 /* -------------------- Template part end -------------------- */
 
+/* -------------------- Team part start -------------------- */
+.team-title {
+  font-size: 18px;
+  font-weight: 400;
+}
+
+.vertical-slider {
+  position: relative;
+  width: 200px;
+  height: 100px;
+  margin: 0 auto;
+  overflow: hidden;
+}
+.slider-track {
+  position: relative;
+  width: 100%;
+  height: 300%; /* 3 slides × 100% */
+  display: flex;
+  flex-direction: column;
+  transition: transform 1s cubic-bezier(0.4, 0, 0.2, 1);
+  transform: translateY(-33.333%); /* Start at middle slide */
+}
+.slide {
+  width: 100%;
+  height: 33.333%; /* Each slide takes 1/3 of track */
+  flex-shrink: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.slide img {
+  width: 160px;
+  height: auto;
+  filter: brightness(0) saturate(100%) invert(74%) sepia(8%) saturate(546%)
+    hue-rotate(229deg) brightness(91%) contrast(87%);
+  display: block;
+}
+/* Slide positions */
+.slider-track.pos-0 {
+  transform: translateY(0%); /* Top slide */
+}
+.slider-track.pos-1 {
+  transform: translateY(-33.333%); /* Middle slide */
+}
+.slider-track.pos-2 {
+  transform: translateY(-66.666%); /* Bottom slide */
+}
+.team-card .card-section {
+  max-width: 24rem;
+  height: 80px;
+  border-radius: 10px;
+  border: 1px solid hsla(0, 0%, 100%, 0.1);
+  text-decoration: none;
+}
+.team-card .card-section:first-child {
+  background-image: radial-gradient(
+      circle farthest-side at 100% -80%,
+      rgba(175, 106, 140, 0.46),
+      rgba(98, 65, 83, 0.38) 39%,
+      transparent 55%
+    ),
+    radial-gradient(circle at 50% 100%, #7a396d4a, #2a192963);
+}
+.team-card .card-section:nth-child(2) {
+  background-image: radial-gradient(circle at 0 100%, #ff4f311f, #fff0),
+    radial-gradient(circle at 50% 100%, hsla(0, 0%, 100%, 0.06), transparent),
+    radial-gradient(circle at 50% 100%, #4b397a6e, #2a192963);
+}
+.team-card .card-section:last-child {
+  background-image: radial-gradient(
+      circle farthest-side at 0 100%,
+      #b200ff26,
+      #fff0 56%
+    ),
+    radial-gradient(
+      circle farthest-side at 20% 100%,
+      hsla(0, 0%, 100%, 0.1),
+      transparent 43%
+    ),
+    radial-gradient(circle at 50% 100%, #a3643a87, #2a192963);
+}
+.card-section img {
+  margin-right: 10px;
+}
+.card-section p {
+  margin-bottom: 0px;
+}
+.card-section p strong {
+  font-size: 17px;
+  font-weight: 500;
+  color: var(--color-primary-hover);
+}
+/* -------------------- Team part end -------------------- */
+
+/* -------------------- Integration part start -------------------- */
+.integration-content {
+  position: relative;
+  width: 100%;
+  height: auto;
+  text-align: center;
+}
+.integration-overlay {
+  max-width: 400px;
+  height: 500px;
+  aspect-ratio: 1 / 2.2;
+  border-radius: 800%;
+  filter: blur(128px);
+  left: 50%;
+  opacity: 0.45;
+  position: absolute;
+  top: 55%;
+  transform: translate(-50%, -50%);
+  width: 80%;
+  z-index: -1;
+  transform: translate(-50%, -50%) rotate(20deg);
+  background-image: linear-gradient(#a13355, #5159d9);
+}
+.integration-content h1 {
+  background: linear-gradient(rgba(255, 255, 255, 0.1), rgba(0, 0, 0, 0.2) 58%),
+    linear-gradient(140deg, rgb(255, 255, 255), rgb(124, 101, 161));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  color: transparent;
+  -webkit-background-clip: text;
+  color: transparent;
+  -webkit-text-fill-color: transparent;
+  font-weight: 500;
+  font-size: 42px;
+}
+.logo-container {
+  width: 100%;
+  height: auto;
+}
+
+.logo-holder {
+  width: 100%;
+  height: 100px;
+  animation: slide 30s linear infinite forwards;
+  margin-inline: auto;
+  position: relative;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  mask-image: linear-gradient(
+    to right,
+    rgba(0, 0, 0, 0),
+    rgba(0, 0, 0, 1) 20%,
+    rgba(0, 0, 0, 1) 80%,
+    rgba(0, 0, 0, 0)
+  );
+}
+
+@keyframes scrollLeft {
+  to {
+    left: -200px;
+  }
+}
+@keyframes scrollRight {
+  to {
+    right: -200px;
+  }
+}
+
+.itemLeft,
+.itemRight {
+  width: 70px;
+  height: 70px;
+  background-color: white;
+  padding: 10px;
+  border-radius: 10px;
+  position: absolute;
+  animation-timing-function: linear;
+  animation-duration: 60s;
+  animation-iteration-count: infinite;
+  transition: 0.3s transform;
+}
+.logo-holder img:hover {
+  background-color: var(--text-color-primary);
+  transform: scale(1.1);
+}
+
+.itemLeft {
+  left: max(calc(73px * 20), 100%);
+  animation-name: scrollLeft;
+}
+.itemRight {
+  right: max(calc(73px * 20), 100%);
+  animation-name: scrollRight;
+}
+
+.item1 {
+  animation-delay: calc(60s / 20 * (20 - 1) * -1);
+}
+.item2 {
+  animation-delay: calc(60s / 20 * (20 - 2) * -1);
+}
+.item3 {
+  animation-delay: calc(60s / 20 * (20 - 3) * -1);
+}
+.item4 {
+  animation-delay: calc(60s / 20 * (20 - 4) * -1);
+}
+.item5 {
+  animation-delay: calc(60s / 20 * (20 - 5) * -1);
+}
+.item6 {
+  animation-delay: calc(60s / 20 * (20 - 6) * -1);
+}
+.item7 {
+  animation-delay: calc(60s / 20 * (20 - 7) * -1);
+}
+.item8 {
+  animation-delay: calc(60s / 20 * (20 - 8) * -1);
+}
+.item9 {
+  animation-delay: calc(60s / 20 * (20 - 9) * -1);
+}
+.item10 {
+  animation-delay: calc(60s / 20 * (20 - 10) * -1);
+}
+.item11 {
+  animation-delay: calc(60s / 20 * (20 - 11) * -1);
+}
+.item12 {
+  animation-delay: calc(60s / 20 * (20 - 12) * -1);
+}
+.item13 {
+  animation-delay: calc(60s / 20 * (20 - 13) * -1);
+}
+.item14 {
+  animation-delay: calc(60s / 20 * (20 - 14) * -1);
+}
+.item15 {
+  animation-delay: calc(60s / 20 * (20 - 15) * -1);
+}
+.item16 {
+  animation-delay: calc(60s / 20 * (20 - 16) * -1);
+}
+.item17 {
+  animation-delay: calc(60s / 20 * (20 - 17) * -1);
+}
+.item18 {
+  animation-delay: calc(60s / 20 * (20 - 18) * -1);
+}
+.item19 {
+  animation-delay: calc(60s / 20 * (20 - 19) * -1);
+}
+.item20 {
+  animation-delay: calc(60s / 20 * (20 - 20) * -1);
+}
+
+.integration-content a.btn-primary {
+  --bg-color-1: hsla(0, 0%, 100%, 0);
+  --bg-color-2: hsla(0, 0%, 100%, 0);
+  --bg-color-3: #077ac7;
+  --bg-color-4: #6b21ef;
+  background: linear-gradient(to bottom, var(--bg-color-1), var(--bg-color-2)),
+    linear-gradient(141deg, var(--bg-color-3), var(--bg-color-4));
+}
+
+.tilt-element {
+  /* Initial tilt state before scrolling */
+  transform: translate(5%, 0px) rotate(5deg) rotateY(15deg) rotateX(60deg);
+  opacity: 0;
+  will-change: transform, opacity;
+  transition: none; /* Smooth animation handled by requestAnimationFrame */
+  transform-style: preserve-3d;
+}
+/* -------------------- Integration part end -------------------- */
+
 /* -------------------- Media Queries -------------------- */
 @media (min-width: 1200px) {
   .container {
@@ -835,7 +1119,7 @@ header {
 }
 @media screen and (min-width: 768px) and (max-width: 991.98px) {
   .container {
-    min-width: 100vw !important;
+    min-width: 100% !important;
     text-align: center;
   }
   hr {
@@ -885,10 +1169,22 @@ header {
     padding: 0 15px;
     width: 100%;
   }
+  .vertical-slider {
+    width: 100px;
+    height: 50px;
+  }
+  .slide img {
+    width: 100px;
+    height: auto;
+  }
+  .card-section {
+    margin: 0 200px;
+    text-align: left;
+  }
 }
 @media (max-width: 767.98px) {
   .container {
-    min-width: 100vw;
+    min-width: 100%;
     padding: 0%;
   }
   nav {
@@ -980,6 +1276,41 @@ header {
     padding: 0 20px;
     width: 100%;
   }
+  .vertical-slider {
+    height: 350px;
+  }
+  .vertical-slider-section {
+    padding: 40px 0;
+  }
+  .vertical-slider {
+    width: 150px;
+    height: 50px;
+  }
+  .slide img {
+    width: 100px;
+    height: auto;
+  }
+  .card-section {
+    margin: 0 200px;
+    text-align: left;
+  }
+  .logo-holder {
+    height: 70px;
+  }
+  .itemLeft,
+  .itemRight {
+    width: 55px;
+    height: 55px;
+    padding: 15px;
+  }
+  .itemLeft {
+    left: max(calc(55px * 20), 100%);
+    animation-name: scrollLeft;
+  }
+  .itemRight {
+    right: max(calc(55px * 20), 100%);
+    animation-name: scrollRight;
+  }
 }
 @media (max-width: 576px) {
   .nav-links .sign-in {
@@ -1002,6 +1333,10 @@ header {
   #button-holder button {
     font-size: 14px;
     margin-bottom: 10px;
+  }
+  .card-section {
+    margin: 0 200px;
+    text-align: left;
   }
 }
 
