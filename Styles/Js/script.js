@@ -181,8 +181,6 @@ templateItems.forEach((item, idx) => {
   item.addEventListener("touchcancel", release);
 });
 
-// ...existing code...
-
 // Cursor-following tooltip for elements with [data-tooltip]
 (function () {
   const OFFSET = 12; // px from cursor
@@ -252,3 +250,121 @@ templateItems.forEach((item, idx) => {
     tip.classList.remove("show");
   });
 })();
+
+/* -------------------- Vertical Slider -------------------- */
+
+function verticalSlider(sliderTrack, slides, delayOffset = 0) {
+  // Function takes 3 parameters:
+  // sliderTrack: the container element that holds all slides (will move up/down)
+  // slides: array of individual slide elements (the 3 images)
+  // delayOffset: time in milliseconds to maintain stagger between sliders permanently
+
+  if (!sliderTrack || !slides.length) return;
+  // Safety check: if slider doesn't exist or has no slides, exit the function
+
+  let currentIndex = 1; // Start at middle
+  // Tracks which slide is currently visible (0=top, 1=middle, 2=bottom)
+
+  let isAnimating = false;
+  // Boolean flag that prevents multiple animations from running at once
+
+  // Sequence: middle(5s)→top(10s)→middle(5s)→bottom(10s)→repeat
+  const timeline = [
+    { target: 0, waitBefore: 5000 }, // Step 1: Wait 5s at middle, then go to top
+    { target: 1, waitBefore: 10000 }, // Step 2: Wait 10s at top, then go to middle
+    { target: 2, waitBefore: 5000 }, // Step 3: Wait 5s at middle, then go to bottom
+    { target: 1, waitBefore: 10000 }, // Step 4: Wait 10s at bottom, then go to middle
+  ];
+  // Array defines the animation roadmap with target slides and wait times
+
+  let stepIndex = 0;
+  // Tracks which step in the timeline array we're currently on
+
+  function slideTo(targetIndex) {
+    // This function performs the actual slide animation to a specific slide
+
+    if (isAnimating || targetIndex === currentIndex) return;
+    // Exit if animation is running or already on target slide
+
+    isAnimating = true;
+    // Set flag to block other animations until this one finishes
+
+    sliderTrack.classList.remove(`pos-${currentIndex}`);
+    // Remove the CSS class for current position
+
+    currentIndex = targetIndex;
+    // Update to the new target slide number
+
+    sliderTrack.classList.add(`pos-${currentIndex}`);
+    // Add CSS class for new position (CSS handles animation)
+
+    setTimeout(() => {
+      isAnimating = false;
+    }, 800);
+    // After 800ms (CSS transition duration), allow next animation
+  }
+
+  function runSequence() {
+    // This function manages the automatic progression through the timeline
+
+    const step = timeline[stepIndex];
+    // Get the current step object from the timeline array
+
+    setTimeout(() => {
+      // Wait for the time specified in step.waitBefore + persistent delayOffset
+
+      slideTo(step.target);
+      // Animate to the target slide specified in this step
+
+      stepIndex = (stepIndex + 1) % timeline.length;
+      // Move to next step (wraps back to 0 after last step)
+
+      runSequence();
+      // Recursively call to schedule the next step (infinite loop)
+    }, step.waitBefore + delayOffset);
+    // KEY FIX: Add delayOffset to EVERY step, not just the first one
+    // This maintains the stagger permanently across all cycles
+    // Example: if delayOffset is 2000ms, every transition happens 2s later than slider 1
+  }
+
+  // Set initial position
+  sliderTrack.classList.add("pos-1");
+  // Add "pos-1" class to show middle slide initially
+
+  // Start with delay offset for stagger effect
+  setTimeout(() => {
+    runSequence();
+  }, delayOffset);
+  // Initial delay before first cycle starts
+}
+// Initialize sliders with staggered delays
+const sliders = [
+  {
+    track: document.querySelector(".vertical-slider .slider-track"),
+    slides: document.querySelectorAll(".vertical-slider .slider-track .slide"),
+    delay: 0, // First slider: no delay
+  },
+  {
+    track: document.querySelector(".vertical-slider .slider-track2"),
+    slides: document.querySelectorAll(".vertical-slider .slider-track2 .slide"),
+    delay: 100, // Second slider: always 2s behind first
+  },
+  {
+    track: document.querySelector(".vertical-slider .slider-track3"),
+    slides: document.querySelectorAll(".vertical-slider .slider-track3 .slide"),
+    delay: 200, // Third slider: always 2s behind first (same as second)
+  },
+  {
+    track: document.querySelector(".vertical-slider .slider-track4"),
+    slides: document.querySelectorAll(".vertical-slider .slider-track4 .slide"),
+    delay: 250, // Fourth slider: always 4s behind first
+  },
+];
+// Start all sliders with their respective delays
+sliders.forEach((slider) => {
+  if (slider.track && slider.slides.length) {
+    verticalSlider(slider.track, slider.slides, slider.delay);
+  }
+});
+
+/* -------------------- Vertical Slider -------------------- */
