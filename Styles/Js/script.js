@@ -489,3 +489,90 @@ sliders.forEach((slider) => {
   }
 })();
 /* -------------------- Integration logo -------------------- */
+
+/* -------------------- Gradient Hover Effect -------------------- */
+document.querySelectorAll(".gradient-hover").forEach((el) => {
+  el.addEventListener("mousemove", (e) => {
+    const rect = el.getBoundingClientRect();
+    const x = e.clientX - rect.left;
+    const y = e.clientY - rect.top;
+
+    el.style.setProperty("--mouse-x", `${x}px`);
+    el.style.setProperty("--mouse-y", `${y}px`);
+  });
+
+  el.addEventListener("mouseleave", () => {
+    el.style.setProperty("--mouse-x", "50%");
+    el.style.setProperty("--mouse-y", "50%");
+  });
+});
+document.querySelectorAll(".gradient-hover-right").forEach((el) => {
+  el.addEventListener("mousemove", (e) => {
+    const rect = el.getBoundingClientRect();
+    const x = e.clientX - rect.left;
+    const y = e.clientY - rect.top;
+
+    el.style.setProperty("--mouse-x", `${x}px`);
+    el.style.setProperty("--mouse-y", `${y}px`);
+  });
+
+  el.addEventListener("mouseleave", () => {
+    el.style.setProperty("--mouse-x", "50%");
+    el.style.setProperty("--mouse-y", "50%");
+  });
+});
+
+// ...existing code...
+
+/* -------------------- Floating Bubble Re-trigger -------------------- */
+// ...existing code...
+
+/* -------------------- Floating Bubble Animation -------------------- */
+// ...existing code...
+
+/* -------------------- Floating Bubble Animation -------------------- */
+/* -------------------- Floating Bubble Animation -------------------- */
+(function bubbleAnimation() {
+  const leftTopCards = document.querySelectorAll(".left-top");
+
+  leftTopCards.forEach((card) => {
+    const floatingTexts = card.querySelectorAll(".floating-text");
+    card.addEventListener("mouseenter", () => {
+      // Reset all animations and make invisible
+      floatingTexts.forEach((text) => {
+        text.classList.remove("animating");
+        // Force immediate reset without transition
+        text.style.transition = "none";
+        text.style.opacity = "1";
+        text.style.transform = "scale(0.8) translateY(10px)";
+      });
+
+      // Force reflow to restart animation
+      card.offsetHeight;
+
+      // Re-enable transitions for animation
+      floatingTexts.forEach((text) => {
+        text.style.transition = "";
+      });
+
+      // Stagger the animations
+      floatingTexts.forEach((text, index) => {
+        setTimeout(() => {
+          text.classList.add("animating");
+        }, index * 300); // 300ms delay between each bubble
+      });
+    });
+
+    // No mouseleave handler - bubbles stay visible after animation completes
+    card.addEventListener("mouseleave", () => {
+      floatingTexts.forEach((text) => {
+        // text.style.opacity = "1";
+        text.style.transform = "scale(1) translateY(0)";
+        text.classList.remove("animating");
+      });
+    });
+    floatingTexts.forEach((text) => {
+      text.classList.remove("animating");
+    });
+  });
+})();
