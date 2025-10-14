@@ -459,6 +459,14 @@ nav div.container-fluid {
   margin: 0 auto;
   /* border: 1px solid var(--color-primary-hover); */
 }
+.h1-gradient {
+  background: linear-gradient(rgba(255, 255, 255, 0.5), rgba(0, 0, 0, 0.2) 100%),
+    linear-gradient(140deg, rgb(255, 255, 255), rgb(124, 101, 161));
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  color: transparent;
+}
 /* -------------------- Header part start -------------------- */
 header {
   width: 100%;
@@ -517,19 +525,12 @@ header {
 .text-holders {
   width: 600px;
   z-index: 1;
+  margin-left: 80px;
 }
 .text-holders h1 {
   font-size: 38px;
   font-weight: 400;
   cursor: text;
-}
-.text-holders h1:first-child {
-  background: linear-gradient(rgba(255, 255, 255, 0.1), rgba(0, 0, 0, 0.2) 58%),
-    linear-gradient(140deg, rgb(255, 255, 255), rgb(124, 101, 161));
-  -webkit-background-clip: text;
-  background-clip: text;
-  -webkit-text-fill-color: transparent;
-  color: transparent;
 }
 #text-gradient {
   background: linear-gradient(140deg, rgb(255, 155, 38), rgb(238, 79, 39));
@@ -898,6 +899,7 @@ header {
   width: 100%;
   height: auto;
   text-align: center;
+  overflow: hidden;
 }
 .integration-overlay {
   max-width: 400px;
@@ -916,15 +918,6 @@ header {
   background-image: linear-gradient(#a13355, #5159d9);
 }
 .integration-content h1 {
-  background: linear-gradient(rgba(255, 255, 255, 0.1), rgba(0, 0, 0, 0.2) 58%),
-    linear-gradient(140deg, rgb(255, 255, 255), rgb(124, 101, 161));
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
-  color: transparent;
-  -webkit-background-clip: text;
-  color: transparent;
-  -webkit-text-fill-color: transparent;
   font-weight: 500;
   font-size: 42px;
 }
@@ -1050,7 +1043,7 @@ header {
   animation-delay: calc(60s / 20 * (20 - 20) * -1);
 }
 
-.integration-content a.btn-primary {
+a.btn-primary {
   --bg-color-1: hsla(0, 0%, 100%, 0);
   --bg-color-2: hsla(0, 0%, 100%, 0);
   --bg-color-3: #077ac7;
@@ -1320,16 +1313,138 @@ header {
 .gradient-hover-right:hover::before {
   opacity: 0.2;
 }
-/* -------------------- Cards part end -------------------- */
-
 /* -------------------- Integration part end -------------------- */
 
-/* -------------------- Media Queries -------------------- */
+/* -------------------- scrollStack part start -------------------- */
+.scrollStack {
+  margin-top: 100px;
+}
+.scrollStack .container {
+  min-width: 1300px;
+}
+.scrollStack .container .stackContent {
+  height: auto;
+  border-radius: 1rem;
+  background-color: #464646;
+  overflow: hidden;
+  border: 1px solid var(--text-color-secondry);
+}
+#lightCanvas {
+  width: inherit;
+  margin: 0 auto;
+  pointer-events: none;
+  position: absolute;
+  inset: 0;
+  mix-blend-mode: lighten;
+  border-radius: 1rem;
+  max-height: 100%;
+}
 
+.stackImgHolder {
+  perspective: 2000px;
+  transform-style: preserve-3d;
+  display: flex;
+  align-items: center;
+  justify-content: end;
+}
+.stackImage {
+  width: 90%;
+  border: 3px solid black;
+  padding: 1px;
+  border-radius: 10px;
+  transform-origin: 0% 50%;
+  transform: rotateY(-30deg);
+}
+.stackContent .contentLeft {
+  z-index: 2;
+}
+.stackContent .contentLeft h3 {
+  font-size: 45px;
+}
+.stackContent .contentLeft ul {
+  margin-top: 40px;
+}
+.stackContent .contentLeft ul li {
+  list-style-type: "</>  ";
+  color: #76727a;
+  margin-bottom: 20px;
+}
+.stackContent .contentLeft ul li span {
+  font-weight: 500;
+  color: black;
+}
+
+/* Scroll part */
+.Stack {
+  position: sticky;
+  top: 96px;
+}
+.scrollStack .container .scrollContent {
+  height: 600px;
+  border-radius: 1rem;
+  background-color: var(--main-color);
+  border: 2px solid hsla(0, 0%, 100%, 0.1);
+  overflow: hidden;
+}
+.stackVideoHolder {
+  overflow: hidden;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.stackVideo {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+}
+.stackVideo video {
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  mix-blend-mode: lighten;
+  mask-image: radial-gradient(
+    ellipse 85% 85% at center,
+    rgba(0, 0, 0, 1) 30%,
+    rgba(0, 0, 0, 0) 70%
+  );
+  -webkit-mask-image: radial-gradient(
+    ellipse 85% 85% at center,
+    rgba(0, 0, 0, 1) 30%,
+    rgba(0, 0, 0, 0) 70%
+  );
+}
+.scrollContent .stackLeft {
+  padding-left: 3rem !important;
+}
+.scrollContent .stackLeft h3 {
+  font-size: 45px;
+}
+.scrollContent .stackLeft p {
+  margin-bottom: 0;
+}
+#stackContentHolder div ul {
+  margin-top: 40px;
+}
+#stackContentHolder div ul li {
+  list-style-type: "✔  ";
+  color: var(--text-color-primary);
+  margin-bottom: 20px;
+}
+#stackContentHolder div ul li span {
+  font-weight: 500;
+  color: white;
+}
+/* -------------------- scrollStack part end -------------------- */
+
+/* -------------------- Media Queries -------------------- */
 /* xl: 1200px */
 @media (min-width: 1200px) {
   .container {
-    max-width: 1200px !important;
+    min-width: 1200px !important;
+    margin: 0 auto !important;
   }
 
   .overlay {
@@ -1338,6 +1453,10 @@ header {
 }
 /* lg: 992px */
 @media screen and (min-width: 992px) and (max-width: 1199.98px) {
+  .container {
+    min-width: 100% !important;
+    padding: 0 30px !important;
+  }
   .navbar-nav {
     padding-right: 0;
   }
@@ -1364,22 +1483,26 @@ header {
     font-size: 14px;
     padding: 4px 12px;
   }
-  .header-img {
+  /* .header-img {
     left: 20%;
-  }
+  } */
   .text-holders {
     margin-left: 0;
+    padding-left: 50px;
   }
   .template-images img {
     padding-top: 10px;
     height: 100%;
   }
+  /* .stackContent .contentLeft {
+    padding-top: 70px;
+  } */
 }
 /* md: 768px */
 @media screen and (min-width: 768px) and (max-width: 991.98px) {
   .container {
     min-width: 100% !important;
-    text-align: center;
+    padding: 0 30px !important;
   }
   hr {
     margin: 0%;
@@ -1419,7 +1542,7 @@ header {
     order: 2;
   }
   .header-img {
-    left: 30%;
+    left: 25%;
   }
   .text-holders {
     margin-left: 30px;
@@ -1465,12 +1588,43 @@ header {
     font-size: 14px;
     width: fit-content;
   }
+  .stackImage {
+    margin: 6.25rem 0;
+  }
+  .scrollContent,
+  .stackContent {
+    height: auto !important;
+  }
+  .stackContent {
+    background: white !important;
+  }
+  .stackContent .contentLeft p br{
+    display: none;  
+  }
+  #lightCanvas {
+    display: none;
+  }
+  #stackContentHolder {
+    margin-top: 2rem;
+  }
+  #stackContentHolder ul {
+    margin: 0 !important;
+  }
+  #stackContentHolder ul li br {
+    display: none !important;
+  }
+  .stackVideo {
+    height: 600px !important;
+  }
+  .stackVideo video {
+    height: 600px;
+  }
 }
 /* sm: 576px */
 @media (max-width: 767.98px) {
   .container {
-    min-width: 100%;
-    padding: 0%;
+    min-width: 100% !important;
+    padding: 0 30px !important;
   }
   nav {
     display: flex;
@@ -1644,6 +1798,34 @@ header {
     position: absolute;
     width: 50%;
   }
+  .scrollContent,
+  .stackContent {
+    height: auto !important;
+  }
+  .stackContent {
+    background: white !important;
+  }
+  #lightCanvas {
+    display: none;
+  }
+  .stackImage {
+    margin: 6.25rem 0;
+  }
+  #stackContentHolder {
+    margin-top: 2rem;
+  }
+  #stackContentHolder ul {
+    margin: 0 !important;
+  }
+  #stackContentHolder ul li br {
+    display: none !important;
+  }
+  .stackVideo {
+    height: 600px !important;
+  }
+  .stackVideo video {
+    height: 600px;
+  }
 }
 @media (max-width: 576px) {
   .nav-links .sign-in {
@@ -1655,6 +1837,7 @@ header {
   }
   .text-holders h1 {
     font-size: 36px;
+    text-align: center;
   }
   .text-holders p {
     padding: 0 12px;
@@ -1677,6 +1860,34 @@ header {
     position: absolute;
     width: 90%;
     top: -20%;
+  }
+  .scrollContent,
+  .stackContent {
+    height: auto !important;
+  }
+  .stackContent {
+    background: white !important;
+  }
+  #lightCanvas {
+    display: none;
+  }
+  .stackImage {
+    margin: 6.25rem 0;
+  }
+  #stackContentHolder {
+    margin-top: 2rem;
+  }
+  #stackContentHolder ul {
+    margin: 0 !important;
+  }
+  #stackContentHolder ul li br {
+    display: none !important;
+  }
+  .stackVideo {
+    height: 600px !important;
+  }
+  .stackVideo video {
+    height: 600px;
   }
 }
 

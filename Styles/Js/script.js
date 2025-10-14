@@ -366,7 +366,6 @@ sliders.forEach((slider) => {
     verticalSlider(slider.track, slider.slides, slider.delay);
   }
 });
-/* -------------------- Vertical Slider -------------------- */
 
 /* -------------------- Integration logo -------------------- */
 /* Tilt on Scroll Effect - starts tilted when entering viewport, straightens as you scroll through */
@@ -488,7 +487,6 @@ sliders.forEach((slider) => {
     init();
   }
 })();
-/* -------------------- Integration logo -------------------- */
 
 /* -------------------- Gradient Hover Effect -------------------- */
 document.querySelectorAll(".gradient-hover").forEach((el) => {
@@ -522,15 +520,6 @@ document.querySelectorAll(".gradient-hover-right").forEach((el) => {
   });
 });
 
-// ...existing code...
-
-/* -------------------- Floating Bubble Re-trigger -------------------- */
-// ...existing code...
-
-/* -------------------- Floating Bubble Animation -------------------- */
-// ...existing code...
-
-/* -------------------- Floating Bubble Animation -------------------- */
 /* -------------------- Floating Bubble Animation -------------------- */
 (function bubbleAnimation() {
   const leftTopCards = document.querySelectorAll(".left-top");
@@ -576,3 +565,158 @@ document.querySelectorAll(".gradient-hover-right").forEach((el) => {
     });
   });
 })();
+
+/* -------------------- scrollStack part -------------------- */
+/* -------------------- Light Canvas Animation -------------------- */
+(function lightCanvasAnimation() {
+  const canvas = document.getElementById("lightCanvas");
+  if (!canvas) return;
+
+  const ctx = canvas.getContext("2d");
+  const stackContent = document.querySelector(".stackContent");
+
+  // Set canvas size
+  function resizeCanvas() {
+    canvas.width = stackContent.offsetWidth;
+    canvas.height = stackContent.offsetHeight;
+  }
+  resizeCanvas();
+  window.addEventListener("resize", resizeCanvas);
+
+  // Light expansion radius
+  let lightRadius = 0; // 0 to 1
+
+  function drawLight() {
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
+    if (lightRadius === 0) return;
+
+    const centerX = canvas.width / 2;
+    const centerY = canvas.height / 2;
+    const maxRadius = Math.sqrt(canvas.width ** 2 + canvas.height ** 2);
+
+    const gradient = ctx.createRadialGradient(
+      centerX,
+      centerY,
+      0,
+      centerX,
+      centerY,
+      lightRadius * maxRadius
+    );
+    gradient.addColorStop(0, "rgba(254,247,237,1)");
+    gradient.addColorStop(0.25, "rgba(254,247,237,0.95)");
+    gradient.addColorStop(0.45, "rgba(215,248,239,0.85)");
+    gradient.addColorStop(0.7, "rgba(79,101,220,0.75)");
+    gradient.addColorStop(0.9, "rgba(79,101,220,0.45)");
+    gradient.addColorStop(1, "rgba(79,101,220,0)");
+
+    ctx.fillStyle = gradient;
+    ctx.fillRect(0, 0, canvas.width, canvas.height);
+
+    const glow = ctx.createRadialGradient(
+      centerX,
+      centerY,
+      0,
+      centerX,
+      centerY,
+      lightRadius * maxRadius * 0.75
+    );
+    glow.addColorStop(0, "rgba(255,255,255,0.6)");
+    glow.addColorStop(0.4, "rgba(254,247,237,0.4)");
+    glow.addColorStop(1, "rgba(254,247,237,0)");
+
+    ctx.fillStyle = glow;
+    ctx.fillRect(0, 0, canvas.width, canvas.height);
+  }
+
+  // Update light expansion on scroll
+  function updateLightOnScroll() {
+    const rect = stackContent.getBoundingClientRect();
+    const windowHeight = window.innerHeight;
+    const elementHeight = rect.height;
+
+    // viewport bottom has reached the element
+    if (rect.top <= windowHeight && rect.bottom >= 0) {
+      const distanceFromStart = windowHeight - rect.top; // start when bottom touches top
+      const distanceToMid = elementHeight / 2; // complete when bottom hits middle
+      const progress = Math.max(
+        0,
+        Math.min(1, distanceFromStart / distanceToMid)
+      );
+
+      lightRadius = progress;
+      drawLight();
+    } else if (rect.bottom < 0) {
+      lightRadius = 1;
+      drawLight();
+    } else {
+      lightRadius = 0;
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
+    }
+  }
+
+  // Listen to scroll with requestAnimationFrame for smooth animation
+  let ticking = false;
+  function onScroll() {
+    if (!ticking) {
+      window.requestAnimationFrame(() => {
+        updateLightOnScroll();
+        ticking = false;
+      });
+      ticking = true;
+    }
+  }
+
+  window.addEventListener("scroll", onScroll);
+  window.addEventListener("resize", () => {
+    resizeCanvas();
+    updateLightOnScroll();
+  });
+
+  // Initial draw
+  updateLightOnScroll();
+})();
+
+function updateParallaxScroll() {
+  const scrollContent = document.querySelector(".Scroll");
+  const stack = document.querySelector(".Stack");
+
+  if (!scrollContent || !stack) return;
+
+  // Only apply parallax for large screens
+  if (window.innerWidth <= 992) {
+    scrollContent.style.transform = ""; // Reset transform for small screens
+    stack.style.position = "static";
+    return;
+  }
+
+  // Calculate trigger pixel: when bottom of page reaches bottom of .Stack
+  const stackRect = stack.getBoundingClientRect();
+  const stackBottom = stackRect.bottom + window.pageYOffset;
+  // Use stackBottom as dynamic trigger
+  const bottomPixel = window.pageYOffset + window.innerHeight;
+  // console.log(`This is the bottom pixel: ${bottomPixel}`);
+  
+  
+  // Calculate the max translate so .Scroll never goes above .stackContent
+  const stackContentTop =
+    stack.getBoundingClientRect().top + window.pageYOffset;
+  const maxTranslate = stackContentTop - scrollContent.offsetTop - 5;
+  if (bottomPixel >= stackBottom && bottomPixel <= stackBottom + maxTranslate) {
+    scrollContent.style.transform = `translateY(-${
+      bottomPixel - stackBottom
+    }px)`;
+  } else if (bottomPixel > stackBottom + maxTranslate) {
+    scrollContent.style.transform = `translateY(-${maxTranslate}px)`; // Stop at top of .stackContent
+  } else {
+    scrollContent.style.transform = ""; // Reset before the range
+  }
+}
+
+// Listen for scroll and resize
+window.addEventListener("scroll", updateParallaxScroll);
+window.addEventListener("resize", updateParallaxScroll);
+
+// Initial call
+if (window.innerWidth >= 992) {
+  updateParallaxScroll();
+}
