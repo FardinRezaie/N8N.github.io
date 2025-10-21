@@ -695,8 +695,7 @@ function updateParallaxScroll() {
   // Use stackBottom as dynamic trigger
   const bottomPixel = window.pageYOffset + window.innerHeight;
   // console.log(`This is the bottom pixel: ${bottomPixel}`);
-  
-  
+
   // Calculate the max translate so .Scroll never goes above .stackContent
   const stackContentTop =
     stack.getBoundingClientRect().top + window.pageYOffset;
@@ -720,3 +719,17 @@ window.addEventListener("resize", updateParallaxScroll);
 if (window.innerWidth >= 992) {
   updateParallaxScroll();
 }
+
+/* -------------------- Studies card part -------------------- */
+const stuCard = document.querySelectorAll(".studies-card");
+function updateStudiesCardGradientHover() {
+  stuCard.forEach((card) => {
+    if (window.innerWidth <= 992) {
+      card.classList.remove("gradient-hover");
+    } else {
+      card.classList.add("gradient-hover");
+    }
+  });
+}
+updateStudiesCardGradientHover();
+window.addEventListener("resize", updateStudiesCardGradientHover);
