@@ -123,6 +123,43 @@ body {
   max-width: 1200px;
   margin: 0 auto;
 }
+.h1-gradient {
+  background: linear-gradient(rgba(255, 255, 255, 0.5), rgba(0, 0, 0, 0.2) 10%),
+    linear-gradient(140deg, rgba(255, 255, 255, 1), rgb(124, 101, 161));
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  color: transparent;
+}
+a.btn-primary,
+button.btn-primary {
+  --bg-color-1: hsla(0, 0%, 100%, 0);
+  --bg-color-2: hsla(0, 0%, 100%, 0);
+  --bg-color-3: #077ac7;
+  --bg-color-4: #6b21ef;
+  background: linear-gradient(to bottom, var(--bg-color-1), var(--bg-color-2)),
+    linear-gradient(141deg, var(--bg-color-3), var(--bg-color-4));
+  box-shadow: inset 0 1px 1px #fff3, 0 1px 2px #08080833, 0 4px 4px #08080814,
+    0 7px 0 -12px #077ac7, inset 0 6px 12px #ffffff1f;
+  transition-duration: 0.4s, 0.3s, 0.3s, 0.3s, 0.3s;
+  transition-property: box-shadow, --bg-color-1, --bg-color-2, --bg-color-3,
+    --bg-color-4;
+  transition-timing-function: cubic-bezier(0.25, 0.46, 0.45, 0.94), linear,
+    linear, linear, linear;
+}
+
+.card-background {
+  background-image: radial-gradient(
+      circle at 30% 140%,
+      rgba(217, 126, 75, 0.3),
+      transparent 37%
+    ),
+    radial-gradient(circle at 50% 310%, #0400ff26, #a2a68700 78%),
+    linear-gradient(transparent, #0d0a195e),
+    radial-gradient(circle at 50% -30%, #a85c5c33, #67454500),
+    radial-gradient(90% 10% at 50% 0, #a85c5c0d, #67454500 90%);
+  border: 2px solid hsla(0, 0%, 100%, 0.1);
+}
 /* -------------------- Nav part Start -------------------- */
 
 #nav-container {
@@ -455,14 +492,6 @@ nav div.container-fluid {
 
 /* -------------------- Nav part end -------------------- */
 
-.h1-gradient {
-  background: linear-gradient(rgba(255, 255, 255, 0.5), rgba(0, 0, 0, 0.2) 100%),
-    linear-gradient(140deg, rgb(255, 255, 255), rgb(124, 101, 161));
-  -webkit-background-clip: text;
-  background-clip: text;
-  -webkit-text-fill-color: transparent;
-  color: transparent;
-}
 /* -------------------- Header part start -------------------- */
 header {
   width: 100%;
@@ -1044,15 +1073,6 @@ header {
   animation-delay: calc(60s / 20 * (20 - 20) * -1);
 }
 
-a.btn-primary {
-  --bg-color-1: hsla(0, 0%, 100%, 0);
-  --bg-color-2: hsla(0, 0%, 100%, 0);
-  --bg-color-3: #077ac7;
-  --bg-color-4: #6b21ef;
-  background: linear-gradient(to bottom, var(--bg-color-1), var(--bg-color-2)),
-    linear-gradient(141deg, var(--bg-color-3), var(--bg-color-4));
-}
-
 .tilt-element {
   /* Initial tilt state before scrolling */
   transform: translate(5%, 0px) rotate(5deg) rotateY(15deg) rotateX(60deg);
@@ -1073,7 +1093,7 @@ a.btn-primary {
   font-size: 44px;
   font-weight: 400;
 }
-.left-cards .left-top div.row,
+/* .left-cards .left-top div.row,
 .left-cards .left-bottom div.row {
   background-image: radial-gradient(
       circle at 30% 140%,
@@ -1085,7 +1105,8 @@ a.btn-primary {
     radial-gradient(circle at 50% -30%, #a85c5c33, #67454500),
     radial-gradient(90% 10% at 50% 0, #a85c5c0d, #67454500 90%);
   border: 2px solid hsla(0, 0%, 100%, 0.1);
-}
+} */
+
 .left-top-content,
 .left-bottom-content {
   display: flex;
@@ -1214,7 +1235,7 @@ a.btn-primary {
   scale: 1.25;
 }
 
-.right-cards {
+/* .right-cards {
   border: 2px solid hsla(0, 0%, 100%, 0.1);
   background-image: radial-gradient(
       circle at 30% 140%,
@@ -1225,7 +1246,8 @@ a.btn-primary {
     linear-gradient(transparent, #0d0a195e),
     radial-gradient(circle at 50% -30%, #a85c5c33, #67454500),
     radial-gradient(90% 10% at 50% 0, #a85c5c0d, #67454500 90%);
-}
+} */
+
 .right-cards h3 {
   font-size: 25px;
   font-weight: 400;
@@ -1530,6 +1552,138 @@ a.btn-primary {
   color: var(--text-white);
 }
 
+/* -------------------- Information Section -------------------- */
+#server-background {
+  height: 700px;
+  right: -30%;
+  mask: linear-gradient(var(--main-color), transparent);
+  filter: brightness(84%) saturate(27%);
+}
+#information-tag span:first-child {
+  color: var(--text-white);
+  background-image: radial-gradient(
+      circle closest-corner at 50% 160%,
+      #8b5261,
+      #fff0 67%
+    ),
+    linear-gradient(hsla(0, 0%, 100%, 0.18), transparent);
+  box-shadow: inset 0 0 #c4bbd3, 0 4px 4px #0e091870, 0 13px 16px -8px #000,
+    inset 0 4px 12px #ffffff0d;
+  padding: 5px 10px 7px 5px;
+  border-radius: 15px;
+  text-align: center;
+}
+#information-tag span:first-child span {
+  font-size: 14px;
+}
+#information-tag span:first-child i {
+  background-image: radial-gradient(88% 125% at 25% 0, #138af2e6 0, #520092e6);
+  font-size: 12px;
+  padding: 5px 7px;
+  border-radius: 50%;
+}
+
+.info-content-left h1 {
+  font-size: 50px;
+  line-height: 50px;
+}
+
+#text-gradient {
+  background: linear-gradient(140deg, rgb(255, 155, 38), rgb(238, 79, 39));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  -webkit-text-stroke: 1px rgba(255, 255, 255, 0.1);
+}
+#info-button-holder button {
+  outline: none;
+  border: 0px solid white;
+  overflow: hidden;
+  font-size: 14px;
+}
+#info-button-holder button:last-child {
+  text-decoration: none;
+  color: var(--text-white);
+  padding: 6px 16px;
+  border: 1px solid hsla(0, 0%, 100%, 0.4);
+  border-radius: 8px;
+  position: relative;
+  background: linear-gradient(
+    180deg,
+    rgba(14, 9, 24, 1) 100%,
+    rgba(37, 54, 71, 1) 100%,
+    rgba(54, 89, 108, 1) 100%
+  );
+  overflow: hidden; /* Add this to contain the sliding gradient */
+  z-index: 0; /* create stacking context so ::before can sit behind */
+}
+#info-button-holder button:last-child::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: linear-gradient(
+    0deg,
+    rgba(14, 9, 24, 1) 0%,
+    rgba(37, 54, 71, 1) 50%,
+    rgba(14, 9, 24, 1) 100%
+  );
+  border-radius: inherit;
+  opacity: 1;
+  transition: transform 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+  transform: translateY(80%);
+  z-index: -1;
+  pointer-events: none;
+}
+#info-button-holder button:last-child:hover::before {
+  transform: translateY(-60%);
+}
+
+.info-content-left ul {
+  list-style: none;
+  width: 100%;
+}
+.info-content-left ul li {
+  margin-bottom: 30px;
+  display: flex;
+  justify-content: space-between;
+}
+.info-content-left ul li h6 {
+  color: var(--text-white);
+  margin: 0;
+}
+.info-content-left ul li p {
+  justify-self: flex-end;
+  width: 60%;
+  margin: 0;
+}
+
+.info-logo img {
+  width: 80px;
+  margin-right: 30px;
+}
+.info-card {
+  width: 390px;
+  height: auto;
+  background-color: #1f192ab3;
+}
+.info-card .card-body .user-info img {
+  width: 50px;
+}
+.info-card .card-body .user-info div span {
+  display: block;
+  font-size: 14px;
+}
+.info-card .card-body .user-info div span:first-child {
+  font-size: 18px;
+  color: var(--text-white);
+}
+.info-card .card-body a:hover {
+  background: #ffffff03;
+  box-shadow: inset -15px 13px 20px #1f192a, 0 5px 50px -12px #ff9b26;
+  transition: box-shadow 0.5s, border-color 0.5s;
+}
 /* -------------------- Media Queries -------------------- */
 /* xl: 1200px */
 @media (min-width: 1200px) {
@@ -1595,9 +1749,9 @@ a.btn-primary {
     min-width: 100% !important;
     padding: 0 30px !important;
   }
-  hr {
+  /* hr {
     margin: 0%;
-  }
+  } */
   nav {
     display: flex;
     justify-content: space-between;
@@ -1941,6 +2095,16 @@ a.btn-primary {
   .studies-card .card-body q {
     font-size: 19px;
   }
+  .info-content-left h1 {
+    font-size: 40px;
+  }
+  .info-content-left ul li {
+    display: block;
+  }
+  .info-content-left ul li p {
+    justify-self: flex-start;
+    width: 100%;
+  }
 }
 @media (max-width: 576px) {
   .nav-links .sign-in {
@@ -2028,6 +2192,13 @@ a.btn-primary {
     position: absolute;
     width: 90%;
     top: 0%;
+  }
+  .info-content-left h1 {
+    font-size: 35px;
+    line-height: 40px;
+  }
+  .info-logo img {
+    width: 65px;
   }
 }
 
