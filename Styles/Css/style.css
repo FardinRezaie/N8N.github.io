@@ -124,8 +124,8 @@ body {
   margin: 0 auto;
 }
 .h1-gradient {
-  background: linear-gradient(rgba(255, 255, 255, 0.5), rgba(0, 0, 0, 0.2) 10%),
-    linear-gradient(140deg, rgba(255, 255, 255, 1), rgb(124, 101, 161));
+  background-image: linear-gradient(180deg, #ffffff1a, #0003 58%),
+    linear-gradient(140deg, #fff, #7c65a1);
   -webkit-background-clip: text;
   background-clip: text;
   -webkit-text-fill-color: transparent;
@@ -1684,6 +1684,218 @@ header {
   box-shadow: inset -15px 13px 20px #1f192a, 0 5px 50px -12px #ff9b26;
   transition: box-shadow 0.5s, border-color 0.5s;
 }
+
+/* -------------------- Automation Section -------------------- */
+.automation-holder,
+.automate-holder {
+  height: auto;
+  background-image: radial-gradient(
+      circle closest-corner at 50% 110%,
+      #0f0a19,
+      #26214900
+    ),
+    linear-gradient(#67454599, #26214900 60%);
+  background-repeat: no-repeat;
+  --tw-shadow: inset -1px -1px #fff3, inset 1px 1px #ffffff4d;
+  --tw-shadow-colored: inset -1px -1px var(--tw-shadow-color),
+    inset 1px 1px var(--tw-shadow-color);
+  box-shadow: var(--tw-ring-offset-shadow, 0 0 #0000),
+    var(--tw-ring-shadow, 0 0 #0000), var(--tw-shadow);
+}
+.automate-holder {
+  backdrop-filter: blur(13px);
+  background-image: radial-gradient(
+      circle closest-corner at 50% 110%,
+      #0f0a19,
+      #26214900
+    ),
+    linear-gradient(#67454599, #26214900 90%);
+}
+.automate-holder #automation-tag span:first-child {
+  color: var(--text-white);
+  background-image: radial-gradient(
+      circle closest-corner at 50% 160%,
+      #ec8961,
+      #8a546f 67%
+    ),
+    linear-gradient(hsla(0, 0%, 100%, 0.18), transparent);
+  box-shadow: inset 0 0 #c4bbd3, inset 0 4px 12px #ffffff0d;
+  padding: 5px 10px 7px 5px;
+  border-radius: 15px;
+  text-align: center;
+}
+#automation-tag span:first-child span {
+  font-size: 14px;
+}
+#automation-tag span:first-child i {
+  background-image: radial-gradient(
+    286.48% 406.94% at -41.88% -152%,
+    #fff8f0e6 0,
+    #ff9b26e6 29.55%,
+    #ee4f27e6 62.05%,
+    #520092e6
+  );
+  font-size: 12px;
+  padding: 5px 7px;
+  border-radius: 50%;
+}
+
+.automation-content h2,
+.automate-content h2 {
+  font-size: 50px;
+  color: var(--text-white);
+}
+.automation-content a:hover {
+  --bg-color-1: hsla(0, 0%, 100%, 0);
+  --bg-color-2: hsla(0, 0%, 100%, 0);
+  --bg-color-3: #077ac7;
+  --bg-color-4: #6b21ef;
+  box-shadow: inset 0 1px 1px #fff3, 0 1px 2px #08080833, 0 4px 4px #08080814,
+    0 7px 80px -12px #ee4f27, inset 0 6px 12px #ffffff1f;
+  background: linear-gradient(to bottom, var(--bg-color-1), var(--bg-color-2)),
+    linear-gradient(141deg, var(--bg-color-3), var(--bg-color-4));
+  transition-duration: 0.4s, 0.3s, 0.3s, 0.3s, 0.3s;
+  transition-property: box-shadow, --bg-color-1, --bg-color-2, --bg-color-3,
+    --bg-color-4;
+  transition-timing-function: cubic-bezier(0.25, 0.46, 0.45, 0.94), linear,
+    linear, linear, linear;
+}
+
+.Automate .container video {
+  position: absolute;
+  top: 80%;
+  left: 50%;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transform: translate(-50%, -50%);
+  z-index: -2;
+  translate: none;
+  rotate: none;
+  scale: none;
+  opacity: 0.3392;
+  mask: radial-gradient(65% 70% at 50% 50%, #fff 28%, hsla(0, 0%, 100%, 0) 70%);
+}
+.automate-content a {
+  text-decoration: none;
+  color: var(--text-white);
+  margin-right: 10px;
+  padding: 6px 16px;
+  border: 1px solid hsla(0, 0%, 100%, 0.4);
+  border-radius: 8px;
+  position: relative;
+  background: linear-gradient(225deg, #ff0c00, #fd8925);
+  overflow: hidden;
+  z-index: 0;
+}
+.automate-content a:before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: linear-gradient(225deg, #ff0c00, #fd8925);
+  border-radius: inherit;
+  opacity: 1;
+  transition: transform 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+  transform: translateY(100%);
+  z-index: -1;
+  pointer-events: none;
+}
+.automate-content a:hover {
+  border-color: #fd8925 !important;
+}
+.automate-content a:hover::before {
+  transform: translateY(-60%);
+}
+
+.automate-content p {
+  font-size: 20px;
+  color: var(--text-white);
+}
+.automate-content p span {
+  background-clip: text;
+  background-image: linear-gradient(270deg, #e768e6, #ff9b26);
+  color: transparent;
+  display: inline;
+  font-weight: 400;
+  padding: 0.25rem 0.5rem;
+  position: relative;
+}
+.automate-content p span:after {
+  border-radius: 0.25rem;
+  content: "";
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  position: absolute;
+  z-index: -1;
+  --tw-bg-opacity: 1;
+  background-color: rgb(31 25 42 / var(--tw-bg-opacity, 1));
+}
+
+.Automation,
+.Automate {
+  position: relative;
+  overflow: visible;
+}
+.automation-gradient-hover,
+.automate-gradient-hover {
+  position: absolute;
+  aspect-ratio: 1 / 1;
+  width: clamp(300px, 75%, 800px);
+  border-radius: 50%;
+  pointer-events: none;
+  transform: translate(-50%, -50%) scale(var(--scale, 0.8));
+  left: var(--pos-x, 50%);
+  top: var(--pos-y, 50%);
+  z-index: -1;
+  opacity: var(--opacity, 0);
+  visibility: var(--visibility, hidden);
+  transition: opacity 220ms ease, transform 120ms ease;
+  will-change: transform, opacity;
+  mix-blend-mode: lighten;
+  filter: blur(100px);
+  background-image: linear-gradient(136deg, #ff9b26, #6b21ef);
+}
+.automate-gradient-hover {
+  background-image: linear-gradient(
+    136deg,
+    rgb(119, 27, 57),
+    rgb(183, 44, 67)
+  ) !important;
+}
+.automation-holder:hover span.automation-gradient-hover::before {
+  opacity: 0.5;
+  visibility: visible;
+}
+.automation-gradient-hover + *,
+.automation-gradient-hover ~ *,
+.automate-gradient-hover + *,
+.automate-gradient-hover ~ * {
+  position: relative;
+  z-index: 1;
+}
+
+/* 
+gradient-hover
+background-image: linear-gradient(136deg, rgb(119, 27, 57), rgb(183, 44, 67));
+    top: 50%;
+    left: 50%;
+    opacity: 0;
+    visibility: hidden;
+
+    galaxy mask
+    mask: radial-gradient(65% 70% at 50% 50%, #fff 28%, hsla(0, 0%, 100%, 0) 70%);
+    translate: none;
+    rotate: none;
+    scale: none;
+    opacity: 0.4392;
+    transform: translate3d(0px, 0px, 0px) scale(0.7196, 0.7196);
+*/
+
 /* -------------------- Media Queries -------------------- */
 /* xl: 1200px */
 @media (min-width: 1200px) {
@@ -2104,6 +2316,12 @@ header {
   .info-content-left ul li p {
     justify-self: flex-start;
     width: 100%;
+  }
+
+  .automation-content h2,
+  .automate-content h2 {
+    font-size: 30px;
+    color: var(--text-white);
   }
 }
 @media (max-width: 576px) {

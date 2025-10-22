@@ -733,3 +733,66 @@ function updateStudiesCardGradientHover() {
 }
 updateStudiesCardGradientHover();
 window.addEventListener("resize", updateStudiesCardGradientHover);
+
+/* -------------------- Automation card part -------------------- */
+// ...existing code...
+const clamp = (val, min, max) => Math.max(min, Math.min(max, val));
+
+document
+  .querySelectorAll(".automation-gradient-hover, .automate-gradient-hover")
+  .forEach((glow) => {
+    const container = glow.parentElement;
+    if (!container) return;
+
+    if (getComputedStyle(container).position === "static") {
+      container.style.position = "relative";
+    }
+
+    glow.style.setProperty("--mouse-x", "50%");
+    glow.style.setProperty("--mouse-y", "50%");
+    glow.style.visibility = "hidden";
+    glow.style.opacity = "0";
+    glow.style.transform = "translate(-50%, -50%)";
+
+    container.addEventListener("mouseenter", () => {
+      glow.style.visibility = "visible";
+      glow.style.opacity = "1";
+      glow.style.zIndex = "-1";
+    });
+
+    container.addEventListener("mousemove", (event) => {
+      const rect = container.getBoundingClientRect();
+      const relX = event.clientX - rect.left;
+
+      const percentX = (relX / rect.width) * 100;
+      glow.style.setProperty("--mouse-x", `${percentX}%`);
+
+      const maxTravel = Math.max(0, (rect.width - glow.offsetWidth) / 2);
+      const rawShift = relX - rect.width / 2;
+      const clampedShift = clamp(rawShift, -maxTravel, maxTravel);
+
+      glow.style.transform = `translate(-50%, -50%) translateX(${clampedShift}px)`;
+    });
+
+    container.addEventListener("mouseleave", () => {
+      glow.style.opacity = "0";
+      setTimeout(() => {
+        if (parseFloat(getComputedStyle(glow).opacity) === 0) {
+          glow.style.visibility = "hidden";
+          glow.style.setProperty("--mouse-x", "50%");
+          glow.style.transform = "translate(-50%, -50%)";
+        }
+      }, 200);
+    });
+  });
+
+const automationGlow = document.querySelectorAll(".automation-gradient-hover");
+const automateGlow = document.querySelectorAll(".automate-gradient-hover");
+if (window.innerWidth <= 992) {
+  automationGlow.forEach((glow) => {
+    glow.classList.add("hidden");
+  });
+  automateGlow.forEach((glow) => {
+    glow.classList.add("hidden");
+  });
+}
