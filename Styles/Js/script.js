@@ -789,3 +789,51 @@ if (window.innerWidth <= 992) {
     });
   });
 })();
+
+/* -------------------- Reveal Js Animations -------------------- */
+
+const revealConfig = {
+  distance: "40px",
+  duration: 1000,
+  reset: false,
+  origin: "bottom",
+};
+
+// Use the base config and only override the delay for each element
+ScrollReveal().reveal(".header img", {
+  ...revealConfig,
+  delay: 200,
+  distance: "0px",
+});
+ScrollReveal().reveal(".text-holders h1", { ...revealConfig, delay: 200 });
+ScrollReveal().reveal(".text-holders #text-gradient", {
+  ...revealConfig,
+  delay: 300,
+});
+ScrollReveal().reveal(".text-holders p", { ...revealConfig, delay: 400 });
+ScrollReveal().reveal(".text-holders #button-holder", {
+  ...revealConfig,
+  delay: 500,
+});
+
+// Template part
+ScrollReveal().reveal(".template-items", { ...revealConfig, delay: 200 });
+ScrollReveal().reveal(".template-images", { ...revealConfig, delay: 200 });
+
+// Team part
+ScrollReveal().reveal(".team .container h6", { ...revealConfig, delay: 200 });
+ScrollReveal().reveal("#teamSlider", { ...revealConfig, delay: 400 });
+ScrollReveal().reveal(".team-card", { ...revealConfig, delay: 600 });
+
+// Integration Content
+ScrollReveal().reveal(".integration-content", { ...revealConfig, delay: 200 });
+
+// Card Part
+ScrollReveal().reveal(".head h1", { ...revealConfig, delay: 200 });
+
+// Information Part
+ScrollReveal().reveal(".info-content-left", { ...revealConfig, delay: 200 });
+ScrollReveal().reveal(".information-holder img", {
+  ...revealConfig,
+  delay: 600,
+});
