@@ -29,28 +29,6 @@ navItems.forEach((item) => {
   });
 });
 
-/* Accordian List */
-// const accor = function (Item, dropdown) {
-//   const menuItems = document.querySelectorAll(Item);
-
-//   menuItems.forEach((item) => {
-//     item.addEventListener("click", function () {
-//       // Get the panel inside this menu item
-
-//       const panel = this.querySelector(dropdown);
-
-//       if (panel) {
-//         if (panel.style.maxHeight) {
-//           panel.style.maxHeight = null;
-//         } else {
-//           panel.style.maxHeight = panel.scrollHeight + "px";
-//         }
-//       }
-//     });
-//   });
-// };
-// accor("menu-icon", "menu-list");
-
 const menuItems = document.querySelectorAll(".menu-item");
 menuItems.forEach((item) => {
   item.addEventListener("click", function () {
@@ -148,9 +126,6 @@ window.addEventListener("scroll", function () {
 
   lastScrollTop = currentScroll <= 0 ? 0 : currentScroll; // Prevent negative scrolling
 });
-
-/* -------------------- Templates part -------------------- */
-// ...existing code...
 
 /* -------------------- Templates part -------------------- */
 const templateItems = document.querySelectorAll(".template-items");
@@ -567,7 +542,7 @@ document.querySelectorAll(".gradient-hover-right").forEach((el) => {
 })();
 
 /* -------------------- scrollStack part -------------------- */
-/* -------------------- Light Canvas Animation -------------------- */
+/*  Light Canvas Animation  */
 (function lightCanvasAnimation() {
   const canvas = document.getElementById("lightCanvas");
   if (!canvas) return;
@@ -711,11 +686,9 @@ function updateParallaxScroll() {
   }
 }
 
-// Listen for scroll and resize
 window.addEventListener("scroll", updateParallaxScroll);
 window.addEventListener("resize", updateParallaxScroll);
 
-// Initial call
 if (window.innerWidth >= 992) {
   updateParallaxScroll();
 }
@@ -735,9 +708,7 @@ updateStudiesCardGradientHover();
 window.addEventListener("resize", updateStudiesCardGradientHover);
 
 /* -------------------- Automation card part -------------------- */
-// ...existing code...
 const clamp = (val, min, max) => Math.max(min, Math.min(max, val));
-
 document
   .querySelectorAll(".automation-gradient-hover, .automate-gradient-hover")
   .forEach((glow) => {
@@ -796,3 +767,25 @@ if (window.innerWidth <= 992) {
     glow.classList.add("hidden");
   });
 }
+
+/* -------------------- Footer card Loop -------------------- */
+(function initializeFeedbackCards() {
+  const fbItems = document.querySelectorAll(".feedbackCards .fbitems");
+  if (!fbItems.length) return;
+
+  fbItems.forEach((item) => {
+    item.addEventListener("mouseenter", () => {
+      // Pause animation on all sibling items
+      fbItems.forEach((sibling) => {
+        sibling.style.animationPlayState = "paused";
+      });
+    });
+
+    item.addEventListener("mouseleave", () => {
+      // Resume animation on all sibling items
+      fbItems.forEach((sibling) => {
+        sibling.style.animationPlayState = "running";
+      });
+    });
+  });
+})();
