@@ -2359,6 +2359,10 @@ header {
     text-align: center;
     justify-content: center;
   }
+  #button-holder button {
+    font-size: 14px;
+    margin-bottom: 10px;
+  }
   .Template {
     text-align: center;
   }

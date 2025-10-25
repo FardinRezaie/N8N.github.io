@@ -817,8 +817,7 @@ ScrollReveal().reveal(".text-holders #button-holder", {
 });
 
 // Template part
-ScrollReveal().reveal(".template-items", { ...revealConfig, delay: 200 });
-ScrollReveal().reveal(".template-images", { ...revealConfig, delay: 200 });
+// ScrollReveal().reveal(".template-images", { ...revealConfig, delay: 200 });
 
 // Team part
 ScrollReveal().reveal(".team .container h6", { ...revealConfig, delay: 200 });
@@ -826,7 +825,7 @@ ScrollReveal().reveal("#teamSlider", { ...revealConfig, delay: 400 });
 ScrollReveal().reveal(".team-card", { ...revealConfig, delay: 600 });
 
 // Integration Content
-ScrollReveal().reveal(".integration-content", { ...revealConfig, delay: 200 });
+// ScrollReveal().reveal(".integration-content", { ...revealConfig, delay: 200 });
 
 // Card Part
 ScrollReveal().reveal(".head h1", { ...revealConfig, delay: 200 });
